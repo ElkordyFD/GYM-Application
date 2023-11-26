@@ -1,7 +1,10 @@
+import jdk.jshell.JShell;
+
 import java.util.*;
 
 public class Customer extends Person {
-   private InBody[] inBodies = {};
+   private final InBody[] inBodies = {};
    private Subscription subscription;
+
 }
 
