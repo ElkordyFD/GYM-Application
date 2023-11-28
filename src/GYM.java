@@ -1,4 +1,3 @@
-import jdk.jshell.JShell;
 
 public class GYM {
     private String name ;
