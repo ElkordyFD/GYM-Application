@@ -3,7 +3,7 @@ package src;
 import java.util.*;
 
 public class Customer extends Person {
-   private final InBody[] inBodies = {};
+   private InBody[] inBodies = {};
    private Subscription subscription;
 
 }

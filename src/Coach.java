@@ -1,4 +1,7 @@
 package src;
 
-public class Coach {
+public class Coach extends Person {
+    private Subscription subscription;
+    private InBody[] inBodies;
+
 }
