@@ -2,8 +2,9 @@ package src;
 
 public abstract class Person {
     private int id;
+    private String password;
     private String name;
-    private Boolean gender;
+    private char gender;
     private String address;
     private String phoneNumber;
     private String email;
@@ -16,7 +17,7 @@ public abstract class Person {
         return name;
     }
 
-    public Boolean getGender() {
+    public char getGender() {
         return gender;
     }
 
@@ -40,7 +41,7 @@ public abstract class Person {
         this.name = name;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(char gender) {
         this.gender = gender;
     }
 
