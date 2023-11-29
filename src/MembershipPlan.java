@@ -1,4 +1,6 @@
-java.time.LocalDate;
+package src;
+
+import java.time.LocalDate;
 public class MembershipPlan {
     private LocalDate startDate;
     private int registeredMonths;
