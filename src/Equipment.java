@@ -1,3 +1,5 @@
+package src;
+
 public class Equipment {
     private String name;
     private String code;

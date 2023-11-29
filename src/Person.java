@@ -1,3 +1,5 @@
+package src;
+
 public abstract class Person {
     private int id;
     private String name;

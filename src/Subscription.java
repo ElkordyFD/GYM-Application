@@ -1,3 +1,5 @@
+package src;
+
 public class Subscription {
     private int customerID;
     private int assignedCoachID;

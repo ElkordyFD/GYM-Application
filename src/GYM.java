@@ -1,3 +1,4 @@
+package src;
 
 public class GYM {
     private String name ;
