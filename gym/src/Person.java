@@ -5,6 +5,6 @@ public abstract class Person {
     private String address;
     private String phoneNumber;
     private String email;
-
-
+//اللهم صل على النبي
+//أمين
 }
