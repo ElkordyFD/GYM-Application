@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.time.LocalDate;
 public class InBody implements Serializable {
-    private int id;
+    private int customerId;
     private LocalDate DATE_OF_INBODY;
     private float height;
     private float totalWeight;
@@ -13,8 +13,8 @@ public class InBody implements Serializable {
     private float totalBodyWater;
     private float protein;
 
-    public InBody(int id, LocalDate DATE_OF_INBODY, float height, float totalWeight, float bodyFatMass, float minerals, float totalBodyWater, float protein) {
-        this.id = id;
+    public InBody(int customerId, LocalDate DATE_OF_INBODY, float height, float totalWeight, float bodyFatMass, float minerals, float totalBodyWater, float protein) {
+        this.customerId = customerId;
         this.DATE_OF_INBODY = DATE_OF_INBODY;
         this.height = height;
         this.totalWeight = totalWeight;
@@ -25,7 +25,7 @@ public class InBody implements Serializable {
     }
 
     public int getId() {
-        return id;
+        return customerId;
     }
 
     public LocalDate getDATE_OF_INBODY() {
@@ -56,8 +56,8 @@ public class InBody implements Serializable {
         return protein;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int customerId) {
+        this.customerId = customerId;
     }
 
     public void setDATE_OF_INBODY(LocalDate DATE_OF_INBODY) {
@@ -91,7 +91,7 @@ public class InBody implements Serializable {
     @Override
     public String toString() {
         return "InBody{" +
-                "id=" + id +
+                "id=" + customerId +
                 ", DATE_OF_INBODY=" + DATE_OF_INBODY +
                 ", height=" + height +
                 ", totalWeight=" + totalWeight +

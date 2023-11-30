@@ -5,9 +5,9 @@ import java.time.LocalDate;
 public class MembershipPlan implements Serializable {
     private LocalDate startDate;
     private int registeredMonths;
-    private float price;
+    private int price;
 
-    public MembershipPlan(LocalDate startDate, int registeredMonths, float price) {
+    public MembershipPlan(LocalDate startDate, int registeredMonths, int price) {
         this.startDate = startDate;
         this.registeredMonths = registeredMonths;
         this.price = price;
@@ -33,7 +33,7 @@ public class MembershipPlan implements Serializable {
         this.registeredMonths = registeredMonths;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
