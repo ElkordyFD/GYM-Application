@@ -20,7 +20,7 @@ public class Coach extends Person implements Serializable {
 
     @Override
     public String toString() {
-        return "Coach{" +
+        return "Coach" + super.toString() +
                 "workingHoursPerDay=" + workingHoursPerDay +
                 ", customers=" + customers +
                 '}';

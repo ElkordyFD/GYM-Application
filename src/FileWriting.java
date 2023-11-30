@@ -7,5 +7,6 @@ public class FileWriting {
         FileOutputStream fileOutput = new FileOutputStream(file,true);
         ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
         objectOutput.writeObject(object);
+        objectOutput.flush();
     }
 }
