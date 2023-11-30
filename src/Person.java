@@ -1,6 +1,8 @@
 package src;
 
-public abstract class Person {
+import java.io.Serializable;
+
+public abstract class Person implements Serializable {
     private int id;
     private String password;
     private String name;
@@ -21,14 +23,13 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "{" +
                 "id=" + id +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", gender=" + gender +
+                ", gender='" + gender + '\'' +
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+                ", email='" + email + '\'' + ", ";
     }
 }
