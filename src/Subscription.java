@@ -13,6 +13,30 @@ public class Subscription implements Serializable {
         this.membershipPlan = membershipPlan;
     }
 
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public int getAssignedCoachID() {
+        return assignedCoachID;
+    }
+
+    public MembershipPlan getMembershipPlan() {
+        return membershipPlan;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
+    public void setAssignedCoachID(int assignedCoachID) {
+        this.assignedCoachID = assignedCoachID;
+    }
+
+    public void setMembershipPlan(MembershipPlan membershipPlan) {
+        this.membershipPlan = membershipPlan;
+    }
+
     @Override
     public String toString() {
         return "Subscription{" +

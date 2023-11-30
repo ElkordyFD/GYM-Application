@@ -24,6 +24,70 @@ public class InBody implements Serializable {
         this.protein = protein;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public LocalDate getDATE_OF_INBODY() {
+        return DATE_OF_INBODY;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public float getTotalWeight() {
+        return totalWeight;
+    }
+
+    public float getBodyFatMass() {
+        return bodyFatMass;
+    }
+
+    public float getMinerals() {
+        return minerals;
+    }
+
+    public float getTotalBodyWater() {
+        return totalBodyWater;
+    }
+
+    public float getProtein() {
+        return protein;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDATE_OF_INBODY(LocalDate DATE_OF_INBODY) {
+        this.DATE_OF_INBODY = DATE_OF_INBODY;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public void setTotalWeight(float totalWeight) {
+        this.totalWeight = totalWeight;
+    }
+
+    public void setBodyFatMass(float bodyFatMass) {
+        this.bodyFatMass = bodyFatMass;
+    }
+
+    public void setMinerals(float minerals) {
+        this.minerals = minerals;
+    }
+
+    public void setTotalBodyWater(float totalBodyWater) {
+        this.totalBodyWater = totalBodyWater;
+    }
+
+    public void setProtein(float protein) {
+        this.protein = protein;
+    }
+
     @Override
     public String toString() {
         return "InBody{" +

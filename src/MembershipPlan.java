@@ -13,6 +13,30 @@ public class MembershipPlan implements Serializable {
         this.price = price;
     }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public int getRegisteredMonths() {
+        return registeredMonths;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setRegisteredMonths(int registeredMonths) {
+        this.registeredMonths = registeredMonths;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "MembershipPlan{" +
