@@ -12,6 +12,7 @@ public class Subscription implements Serializable {
         this.assignedCoachID = assignedCoachID;
         this.membershipPlan = membershipPlan;
     }
+    public Subscription(){}
 
     public int getCustomerID() {
         return customerID;

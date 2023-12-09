@@ -39,4 +39,6 @@ public class Customer extends Person implements Serializable {
               ", subscription=" + subscription +
               '}';
    }
+
+
 }

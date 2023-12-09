@@ -23,6 +23,7 @@ public class InBody implements Serializable {
         this.totalBodyWater = totalBodyWater;
         this.protein = protein;
     }
+    public InBody(){}
 
     public int getId() {
         return customerId;
@@ -91,7 +92,7 @@ public class InBody implements Serializable {
     @Override
     public String toString() {
         return "InBody{" +
-                "id=" + customerId +
+                "customerId=" + customerId +
                 ", DATE_OF_INBODY=" + DATE_OF_INBODY +
                 ", height=" + height +
                 ", totalWeight=" + totalWeight +

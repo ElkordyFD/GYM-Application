@@ -11,14 +11,16 @@ public class GYM implements Serializable {
     private ArrayList<Coach> coaches ;
     private ArrayList<Equipment> sports_equipment;
     private ArrayList<Subscription> subscriptions;
+    private ArrayList<Customer> customers;
 
-    public GYM(String name, String address, String phone_number, ArrayList<Coach> coaches, ArrayList<Equipment> sports_equipment, ArrayList<Subscription> subscriptions) {
+    public GYM(String name, String address, String phone_number, ArrayList<Coach> coaches, ArrayList<Equipment> sports_equipment, ArrayList<Subscription> subscriptions, ArrayList<Customer> customers) {
         this.name = name;
         this.address = address;
         this.phone_number = phone_number;
         this.coaches = coaches;
         this.sports_equipment = sports_equipment;
         this.subscriptions = subscriptions;
+        this.customers = customers;
     }
 
     public String getName() {
@@ -45,6 +47,9 @@ public class GYM implements Serializable {
         return subscriptions;
     }
 
+    public ArrayList<Customer> getCustomers() {
+        return customers;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -70,7 +75,9 @@ public class GYM implements Serializable {
         this.subscriptions = subscriptions;
     }
 
-
+    public void setCustomers(ArrayList<Customer> customers) {
+        this.customers = customers;
+    }
 
     @Override
     public String toString() {
@@ -81,6 +88,7 @@ public class GYM implements Serializable {
                 ", coaches=" + coaches +
                 ", sports_equipment=" + sports_equipment +
                 ", subscriptions=" + subscriptions +
+                ", customers=" + customers +
                 '}';
     }
 }

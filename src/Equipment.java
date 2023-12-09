@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class Equipment implements Serializable {
     private String name;
-    private String code;
+    private int code;
     private int quantity;
 
-    public Equipment(String name, String code, int quantity) {
+    public Equipment(String name, int code, int quantity) {
         this.name = name;
         this.code = code;
         this.quantity = quantity;
@@ -17,7 +17,7 @@ public class Equipment implements Serializable {
         return name;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
@@ -29,7 +29,7 @@ public class Equipment implements Serializable {
         this.name = name;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

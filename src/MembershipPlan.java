@@ -2,6 +2,8 @@ package src;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
+
 public class MembershipPlan implements Serializable {
     private LocalDate startDate;
     private int registeredMonths;
@@ -12,6 +14,7 @@ public class MembershipPlan implements Serializable {
         this.registeredMonths = registeredMonths;
         this.price = price;
     }
+    public MembershipPlan(){}
 
     public LocalDate getStartDate() {
         return startDate;
