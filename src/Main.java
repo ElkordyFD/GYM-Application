@@ -52,7 +52,7 @@ public class Main {
         coaches.add(coach2);
 
 
-        GYM gym = new GYM("H2o","Street","01070824047",coaches,equipments,subscriptions);
+        GYM gym = new GYM("H2o","Street","01070824047",coaches,equipments,subscriptions,customers);
 
 
 

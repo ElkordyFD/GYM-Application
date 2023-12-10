@@ -32,13 +32,13 @@ public class InputObject {
     }
     public static Equipment inputEquipment() {
         String name;
-        int code;
+        String code;
         int quantity;
         Scanner input = new Scanner(System.in);
         System.out.println("Enter name: ");
         name=input.next();
         System.out.println("Enter code: ");
-        code=input.nextInt();
+        code=input.next();
         System.out.println("Enter quantity: ");
         quantity=input.nextInt();
         Equipment equipment = new Equipment(name,code,quantity);

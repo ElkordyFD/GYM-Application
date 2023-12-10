@@ -43,10 +43,10 @@ public class Searching {
         }
         return customer;
     }
-    public static Equipment searchEquipment(ArrayList<Equipment>equipments,int equipmentCode) {
+    public static Equipment searchEquipment(ArrayList<Equipment>equipments,String equipmentCode) {
         Equipment equipment=null;
         for (Equipment e:equipments) {
-            if(e.getCode()==equipmentCode) {
+            if(e.getCode().equals(equipmentCode)) {
                 equipment=e;
                 break;
             }

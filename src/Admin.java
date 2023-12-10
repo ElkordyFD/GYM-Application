@@ -111,7 +111,7 @@ public class Admin {
                     break;
                 case 2:
                     System.out.println("Enter new code: ");
-                    int code = input.nextInt();
+                    String code = input.next();
                     ((Equipment) object).setCode(code);
                     break;
                 case 3:
