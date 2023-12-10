@@ -3,7 +3,7 @@ package src;
 import java.util.ArrayList;
 
 public class DisplayObject {
-    public static void displayCoachs(ArrayList<Coach> coaches) {
+    public static void displayCoaches(ArrayList<Coach> coaches) {
         for (Coach o:coaches) {
             System.out.println(o);
         }
