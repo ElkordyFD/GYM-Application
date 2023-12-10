@@ -33,14 +33,18 @@ public class Main {
         membershipPlans.add(membershipPlan2);
 
         Subscription subscription1 = new Subscription(1, 1, membershipPlan1);
+        Subscription subscription3 = new Subscription(3, 1, membershipPlan1);
         Subscription subscription2 = new Subscription(2, 2, membershipPlan2);
         subscriptions.add(subscription1);
         subscriptions.add(subscription2);
+        subscriptions.add(subscription3);
 
         Customer customer1 = new Customer(1, "1", "Rashed", 'M', "Street", "015", "R@gmail.com", inBodies1, subscription1);
         Customer customer2 = new Customer(2, "1", "Tamer", 'M', "Street", "010", "T@gmail.com", inBodies2, subscription2);
+        Customer customer3 = new Customer(3, "1", "Shams", 'M', "Street", "010", "H@gmail.com", inBodies2, subscription2);
         customers.add(customer1);
         customers.add(customer2);
+        customers.add(customer3);
 
         Coach coach1 = new Coach(1, "1", "Shams", 'M', "Street", "015", "S@gmail.com", 8);
         Coach coach2 = new Coach(2, "1", "Razan", 'F', "Street", "011", "R@gmail.com", 5);
@@ -66,7 +70,15 @@ public class Main {
                 //CUSTOMER
                 break;
             case 3:
-                //COACH
+                Coach user = coaches.get(0);
+                ArrayList<Integer> iDs = user.getCustomerIDs(subscriptions);
+                //System.out.println(Searching.searchCustomers(customers,iDs));
+                DisplayObject.displayCustomers(Searching.searchCustomers(customers,iDs));
+                /*System.out.println(
+                        "\n\n[1] Show customers\n" +
+                        "[2] Get inbody history of a customer\n" +
+                                "[3] Search for customer by name\n" +
+                                "[4] Show customers by gender");*/
                 break;
         }
     }
