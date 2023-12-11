@@ -263,4 +263,7 @@ public class Admin {
         }
         return coachesRecord;
     }
+    public static void getCoachesAssignedCustomer(ArrayList<CoachRecord>coachRecords,ArrayList<Coach>coaches) {
+        DisplayObject.displayDescendingCoaches(coachRecords,coaches);
+    }
 }
