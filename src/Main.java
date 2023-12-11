@@ -203,9 +203,10 @@ public class Main {
                 //CUSTOMER
                 break;
             case 3:
-                Coach user = coaches.get(0);
-                ArrayList<Integer> iDs = user.getCustomerIDs(subscriptions);
-                ArrayList<Customer> myCustomers = Searching.searchCustomers(customers, iDs);
+                //************ COACH ************//
+                Coach user = gym.getCoaches().get(0);
+                ArrayList<Integer> iDs = user.getCustomerIDs(gym.getSubscriptions());
+                ArrayList<Customer> myCustomers = Searching.searchCustomers(gym.getCustomers(), iDs);
                 DisplayObject.displayCustomers(myCustomers);
                 System.out.println(
                         "\n" +
@@ -240,6 +241,7 @@ public class Main {
                         break;
                 }
                 break;
+            //************ COACH ************//
         }
     }
 }
