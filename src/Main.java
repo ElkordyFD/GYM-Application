@@ -205,13 +205,40 @@ public class Main {
             case 3:
                 Coach user = coaches.get(0);
                 ArrayList<Integer> iDs = user.getCustomerIDs(subscriptions);
-                DisplayObject.displayCustomers(Searching.searchCustomers(customers, iDs));
+                ArrayList<Customer> myCustomers = Searching.searchCustomers(customers, iDs);
+                DisplayObject.displayCustomers(myCustomers);
                 System.out.println(
                         "\n" +
                                 "[1] Get inbody history of a customer\n" +
                                 "[2] Search for customer by name\n" +
                                 "[3] Show customers by gender");
-
+                choice = input.nextInt();
+                ArrayList<Customer> customerArrayList = new ArrayList<>();
+                int customerID;
+                String name;
+                Customer c;
+                char gender;
+                switch (choice){
+                    case 1:
+                        System.out.print("Enter customer ID: ");
+                        customerID = input.nextInt();
+                        c =Searching.searchCustomer(myCustomers,customerID);
+                        DisplayObject.displayInBody(c.getInBodies());
+                        break;
+                    case 2:
+                        System.out.print("Enter customer name: ");
+                        name = input.next();
+                        c =Searching.searchCustomer(myCustomers,name);
+                        customerArrayList.add(c);
+                        DisplayObject.displayCustomers(customerArrayList);
+                        break;
+                    case 3:
+                        System.out.print("Enter gender(M/F): ");
+                        gender = input.next().charAt(0);
+                        customerArrayList =Searching.searchCustomer(myCustomers,gender);
+                        DisplayObject.displayCustomers(customerArrayList);
+                        break;
+                }
                 break;
         }
     }
