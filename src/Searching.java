@@ -63,4 +63,15 @@ public class Searching {
         return inbody;
     }
 
+    public static ArrayList<Customer> searchCustomers(ArrayList<Customer> customers, ArrayList<Integer> iDs) {
+        ArrayList<Customer> customerArrayList = new ArrayList<>();
+        for(Integer id:iDs){
+            for(Customer c:customers){
+                if(id == c.getId()){
+                    customerArrayList.add(c);
+                }
+            }
+        }
+        return customerArrayList;
+    }
 }

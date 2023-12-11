@@ -58,7 +58,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        GYM gym=seed();
+        GYM gym = seed();
         //THIS IS TEMPORARY UNTIL LOGIN IS APPLIED
         System.out.println("[1] Admin\n[2] Customer\n[3] Coach\n");
         Scanner input = new Scanner(System.in);
@@ -71,7 +71,7 @@ public class Main {
         int customerId;
         String equipmentCode;
         String date;
-        switch (choice){
+        switch (choice) {
             case 1:
                 //************ ADMIN ************//
                 System.out.println("**************** Welcome Admin! ****************");
@@ -175,26 +175,26 @@ public class Main {
                     case 2:
                         System.out.print("Enter customer's id: ");
                         customerId = input.nextInt();
-                        System.out.println(Admin.getSubscriptionHistoryForACustomer(gym.getCustomers(),customerId));
+                        System.out.println(Admin.getSubscriptionHistoryForACustomer(gym.getCustomers(), customerId));
                         break;
                     case 3:
                         System.out.print("Enter the date: ");
                         date = input.next();
-                        DisplayObject.displayCustomers(Admin.getCustomerInSpecificDate(gym.getCustomers(),date));
+                        DisplayObject.displayCustomers(Admin.getCustomerInSpecificDate(gym.getCustomers(), date));
                         break;
                     case 4:
                         System.out.print("Enter Coach's id: ");
                         coachId = input.nextInt();
-                        DisplayObject.displayCustomers(Admin.getCustomerOfSpecificCoach(gym.getSubscriptions(),gym.getCustomers(),coachId));
+                        DisplayObject.displayCustomers(Admin.getCustomerOfSpecificCoach(gym.getSubscriptions(), gym.getCustomers(), coachId));
                         break;
                     case 5:
                         System.out.println("Enter the date: ");
                         date = input.next();
-                        System.out.println(Admin.getGymIncome(gym.getCustomers(),date));
+                        System.out.println(Admin.getGymIncome(gym.getCustomers(), date));
                         break;
                     case 6:
-                        ArrayList<CoachRecord> coachRecords =Admin.getDescendingCoaches(gym.getSubscriptions(),gym.getCoaches());
-                        Admin.getCoachesAssignedCustomer(coachRecords,gym.getCoaches());
+                        ArrayList<CoachRecord> coachRecords = Admin.getDescendingCoaches(gym.getSubscriptions(), gym.getCoaches());
+                        Admin.getCoachesAssignedCustomer(coachRecords, gym.getCoaches());
                         break;
                 }
                 // ********* the end of Admin *********** //
@@ -204,14 +204,14 @@ public class Main {
                 break;
             case 3:
                 Coach user = coaches.get(0);
-                //ArrayList<Integer> iDs = user.getCustomerIDs(subscriptions);
-                //System.out.println(Searching.searchCustomers(customers,iDs));
-                //DisplayObject.displayCustomers(Searching.searchCustomers(customers,iDs));
-                /*System.out.println(
-                        "\n\n[1] Show customers\n" +
-                        "[2] Get inbody history of a customer\n" +
-                                "[3] Search for customer by name\n" +
-                                "[4] Show customers by gender");*/
+                ArrayList<Integer> iDs = user.getCustomerIDs(subscriptions);
+                DisplayObject.displayCustomers(Searching.searchCustomers(customers, iDs));
+                System.out.println(
+                        "\n" +
+                                "[1] Get inbody history of a customer\n" +
+                                "[2] Search for customer by name\n" +
+                                "[3] Show customers by gender");
+
                 break;
         }
     }
