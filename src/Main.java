@@ -194,6 +194,7 @@ public class Main {
                         break;
                     case 6:
                         ArrayList<CoachRecord> coachRecords =Admin.getDescendingCoaches(gym.getSubscriptions(),gym.getCoaches());
+                        DisplayObject.displayDescendingCoaches(coachRecords,gym.getCoaches());
                         break;
                 }
                 // ********* the end of Admin *********** //

@@ -1,6 +1,8 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class DisplayObject {
     public static void displayCoaches(ArrayList<Coach> coaches) {
@@ -26,7 +28,13 @@ public class DisplayObject {
             System.out.println(inBody);
         }
     }
-    public static void displayDescendingCoaches() {
+    public static void displayCoach(int coachId) {
 
+    }
+    public static void displayDescendingCoaches(ArrayList<CoachRecord>coachRecords,ArrayList<Coach>coaches) {
+        Collections.sort(coachRecords, Comparator.comparingInt(CoachRecord::countOfCusomter).reversed());
+        for (CoachRecord coachRecord :coachRecords) {
+            System.out.println(Searching.searchCoach(coaches,coachRecord.coachId()));
+        }
     }
 }
