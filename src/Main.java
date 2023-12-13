@@ -213,7 +213,7 @@ public class Main {
                                 "[1] Get inbody history of a customer\n" +
                                 "[2] Search for customer by name\n" +
                                 "[3] Show customers by gender");
-                choice = input.nextInt();
+                choice = Validate.getInt(1,3);
                 ArrayList<Customer> customerArrayList = new ArrayList<>();
                 int customerID;
                 String name;
@@ -235,7 +235,7 @@ public class Main {
                         break;
                     case 3:
                         System.out.print("Enter gender(M/F): ");
-                        gender = input.next().charAt(0);
+                        gender = Validate.getGender();
                         customerArrayList =Searching.searchCustomer(myCustomers,gender);
                         DisplayObject.displayCustomers(customerArrayList);
                         break;
