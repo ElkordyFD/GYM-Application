@@ -89,6 +89,7 @@ public class InBody implements Serializable {
         this.protein = protein;
     }
 
+
     @Override
     public String toString() {
         return "InBody{" +

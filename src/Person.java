@@ -21,7 +21,6 @@ public abstract class Person implements Serializable {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
-
     public int getId() {
         return id;
     }

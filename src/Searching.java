@@ -62,5 +62,20 @@ public class Searching {
         }
         return inbody;
     }
-
+    public static Customer searchCustomer(String username,String password,ArrayList<Customer>customers) {
+        Customer customer = null;
+        for (Customer c:customers) {
+            if(c.getEmail().equals(username) && c.getPassword().equals(password))
+                customer=c;
+        }
+        return customer;
+    }
+    public static Coach searchCoach(String username,String password,ArrayList<Coach>coaches) {
+        Coach coach = null;
+        for (Coach c:coaches) {
+            if(c.getEmail().equals(username) && c.getPassword().equals(password))
+                coach=c;
+        }
+        return coach;
+    }
 }
