@@ -24,11 +24,11 @@ public class Searching {
         }
         return customer;
     }
-    public static Customer searchCustomer(ArrayList<Customer>customers,String name) {
-        Customer customer=null;
+    public static ArrayList<Customer>searchCustomer(ArrayList<Customer>customers,String name) {
+        ArrayList<Customer> customer=new ArrayList<>();
         for (Customer c:customers) {
             if(c.getName().equals(name)) {
-                customer=c;
+                customer.add(c);
                 break;
             }
         }

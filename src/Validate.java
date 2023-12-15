@@ -6,24 +6,6 @@ public class Validate {
     static Scanner in = new Scanner(System.in);
     static boolean checkValue;
     //Confirms that input integer is between interval [start,end]
-    public static int getInt(int start, int end) {
-        int x = start; // not initializing causes error
-        try {
-            x = in.nextInt();
-        } catch (Exception e) {
-            getInt(start,end);
-        }
-        try {
-            while (x < start || x > end) {
-                System.out.print("Invalid input. Please retry: ");
-                x = in.nextInt();
-            }
-        } catch (Exception e) {
-            getInt(start,end);
-        }
-        return x;
-    }
-
     public static char getGender() {
         char x = '0';
         try {
@@ -46,12 +28,12 @@ public class Validate {
     public static int checkInt() {
         String x = "0";
         do {
-            System.out.print("Enter Value: ");
             x = in.next();
             if (x.equals("1") || x.equals("2") || x.equals("3") || x.equals("4") || x.equals("5") || x.equals("6") || x.equals("7") || x.equals("8") || x.equals("9")) {
                 checkValue = false;
             } else {
                 System.out.println("Invalid Value");
+                System.out.print("Enter Value: ");
                 checkValue = true;
             }
         } while (checkValue);

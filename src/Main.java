@@ -243,40 +243,53 @@ public class Main {
             }while (checkValue == 1 );
         } else if (userCoach != null) {
                 //************ COACH ************//
-            DisplayObject.displayCustomers(Searching.searchCustomers(gym.getCustomers(),userCoach.getId()));
-            ArrayList<Customer> myCustomers = Searching.searchCustomers(gym.getCustomers(),userCoach.getId());
+            do {
+                DisplayObject.displayCustomers(Searching.searchCustomers(gym.getCustomers(), userCoach.getId()));
+                ArrayList<Customer> myCustomers = Searching.searchCustomers(gym.getCustomers(), userCoach.getId());
                 System.out.println(
                         "\n" +
                                 "[1] Get inbody history of a customer\n" +
                                 "[2] Search for customer by name\n" +
                                 "[3] Show customers by gender");
-                choice = Validate.getInt(1, 3);
+                choice = Validate.checkInt(1, 3);
                 ArrayList<Customer> customerArrayList = new ArrayList<>();
                 int customerID;
                 String name;
                 Customer c;
+                ArrayList<Customer> cus = new ArrayList<>();
                 char gender;
                 switch (choice) {
                     case 1:
                         System.out.print("Enter customer ID: ");
-                        customerID = input.nextInt();
+                        customerID = Validate.checkInt();
                         c = Searching.searchCustomer(myCustomers, customerID);
-                        DisplayObject.displayInBody(c.getInBodies());
+                        if(c != null)
+                            DisplayObject.displayInBody(c.getInBodies());
+                        else
+                            System.out.println("there isn't Customer with this id");
                         break;
                     case 2:
                         System.out.print("Enter customer name: ");
                         name = input.next();
-                        c = Searching.searchCustomer(myCustomers, name);
-                        customerArrayList.add(c);
-                        DisplayObject.displayCustomers(customerArrayList);
+                        customerArrayList = Searching.searchCustomer(myCustomers, name);
+                        if(customerArrayList.size() != 0)
+                            DisplayObject.displayCustomers(customerArrayList);
+                        else
+                            System.out.println("there isn't customer with this name");
                         break;
                     case 3:
                         System.out.print("Enter gender(M/F): ");
                         gender = Validate.getGender();
                         customerArrayList = Searching.searchCustomer(myCustomers, gender);
-                        DisplayObject.displayCustomers(customerArrayList);
+                        if(customerArrayList.size() != 0)
+                            DisplayObject.displayCustomers(customerArrayList);
+                        else
+                            System.out.println("there aren't " + gender + " Customers");
                         break;
                 }
+                System.out.println("Do you want to do another operation?\n" + "[1] yes [2] logOut");
+                checkValue = Validate.checkInt(1,2);
+            } while (checkValue == 1);
         }
     }
 }
