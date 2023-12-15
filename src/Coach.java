@@ -30,4 +30,14 @@ public class Coach extends Person implements Serializable {
                 "workingHoursPerDay=" + workingHoursPerDay +
                 '}';
     }
+
+    public ArrayList<Integer> getCustomerIDs(ArrayList<Subscription> subscriptions) {
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (Subscription s:subscriptions){
+            if(s.getAssignedCoachID() == this.getId()){
+                ids.add(s.getCustomerID());
+            }
+        }
+        return ids;
+    }
 }
