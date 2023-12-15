@@ -20,17 +20,17 @@ public class Admin {
         System.out.println("Enter id: ");
         id = input.nextInt();
         System.out.println("Enter password: ");
-        password = input.nextLine();
+        password = input.next();
         System.out.println("Enter name: ");
-        name = input.nextLine();
+        name = input.next();
         System.out.println("Enter gender: ");
         gender = input.next().charAt(0);
         System.out.println("Enter address: ");
-        address = input.nextLine();
+        address = input.next();
         System.out.println("Enter phoneNumber: ");
-        phoneNumber = input.nextLine();
+        phoneNumber = input.next();
         System.out.println("Enter email: ");
-        email = input.nextLine();
+        email = input.next();
         System.out.println("Enter WorkingHours: ");
         workingHours = input.nextInt();
         Coach coach = new Coach(id, password, name, gender, address, phoneNumber, email, workingHours);
@@ -39,7 +39,7 @@ public class Admin {
 
     public static void addCustomer(ArrayList<Customer> customers) {
         Scanner input = new Scanner(System.in);
-        ArrayList<InBody> inBodies = new ArrayList<InBody>();
+        ArrayList<InBody> inBodies = new ArrayList<>();
         Subscription subscription = new Subscription();
         int id;
         String password;
@@ -52,17 +52,17 @@ public class Admin {
         System.out.println("Enter id: ");
         id = input.nextInt();
         System.out.println("Enter password: ");
-        password = input.nextLine();
+        password = input.next();
         System.out.println("Enter name: ");
-        name = input.nextLine();
+        name = input.next();
         System.out.println("Enter gender: ");
         gender = input.next().charAt(0);
         System.out.println("Enter address: ");
-        address = input.nextLine();
+        address = input.next();
         System.out.println("Enter phoneNumber: ");
-        phoneNumber = input.nextLine();
+        phoneNumber = input.next();
         System.out.println("Enter email: ");
-        email = input.nextLine();
+        email = input.next();
         Customer customer = new Customer(id, password, name, gender, address, phoneNumber, email, inBodies, subscription);
         customers.add(customer);
     }
