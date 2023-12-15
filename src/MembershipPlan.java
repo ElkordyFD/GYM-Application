@@ -43,9 +43,9 @@ public class MembershipPlan implements Serializable {
     @Override
     public String toString() {
         return "MembershipPlan{" +
-                "startDate=" + startDate +
-                ", registeredMonths=" + registeredMonths +
-                ", price=" + price +
+                "startDate: " + startDate +
+                " ,registeredMonths: " + registeredMonths +
+                " ,price: " + price +
                 '}';
     }
 }

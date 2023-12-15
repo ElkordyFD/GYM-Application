@@ -33,8 +33,8 @@ public class Main {
         membershipPlans.add(membershipPlan1);
         membershipPlans.add(membershipPlan2);
 
-        Subscription subscription1 = new Subscription(1, 1, membershipPlan1);
-        Subscription subscription2 = new Subscription(2, 1, membershipPlan2);
+        Subscription subscription1 = new Subscription(1, 1,membershipPlan1);
+        Subscription subscription2 = new Subscription(2, 1,membershipPlan2);
         Subscription subscription3 = new Subscription(3, 2,membershipPlan1);
         subscriptions.add(subscription1);
         subscriptions.add(subscription2);
@@ -72,7 +72,9 @@ public class Main {
         String date;
         String username;
         String password;
+
         System.out.println("**************** Welcome to GYM ***************");
+
         System.out.print("Enter username: ");
         username = input.next();
         System.out.print("Enter password: ");
@@ -206,7 +208,28 @@ public class Main {
             }
             // ********* the end of Admin *********** //
             } else if (userCustomer != null) {
-                //CUSTOMER
+                System.out.println("[1] Get Coach Info\n[2] Gym Equipment\n[3] Membership's Plan\n[4] In-body Info\n[5] Kilos Required");
+                System.out.print("Enter Operation: ");
+                choiceOperation = input.nextInt();
+                switch (choiceOperation) {
+                    case 1:
+                        Coach coach = Searching.searchCoach(gym.getCoaches(),userCustomer.getSubscription().getAssignedCoachID());
+                        userCustomer.getCoachInfo(coach);
+                        break;
+                    case 2:
+                        DisplayObject.displayEquipments(gym.getSports_equipment());
+                        break;
+                    case 3:
+                        System.out.println(userCustomer.getSubscription().getMembershipPlan());
+                        break;
+                    case 4:
+                        System.out.print("Enter date: ");
+                        date = input.next();
+                        userCustomer.getInbodyInfo(date,userCustomer.getInBodies());
+                        break;
+                    case 5:
+                        userCustomer.CaculatePerfectWeight(userCustomer);
+                }
             } else if (userCoach != null) {
                 //************ COACH ************//
                 ArrayList<Customer> myCustomers = Searching.searchCustomers(gym.getCustomers(),userCoach.getId());

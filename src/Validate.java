@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Validate {
 
+    static boolean check = false;
     //Confirms that input integer is between interval [start,end]
     public static int getInt(int start, int end) {
         Scanner in = new Scanner(System.in);

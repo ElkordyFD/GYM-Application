@@ -40,9 +40,9 @@ public class Equipment implements Serializable {
     @Override
     public String toString() {
         return "Equipment{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", quantity=" + quantity +
+                "name: " + name +
+                " ,code: " + code +
+                " ,quantity: " + quantity +
                 '}';
     }
 }
