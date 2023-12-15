@@ -54,11 +54,12 @@ public class Searching {
         return equipment;
     }
     public static InBody searchInBody(ArrayList<InBody> inBodies, String date) {
-        InBody inbody=new InBody();
+        InBody inbody=null;
         for (InBody inBody:inBodies) {
-            if(DateFormating.dateFormatMonthYear(inBody.getDATE_OF_INBODY()).equals(date))
-                inbody=inBody;
-            break;
+            if(DateFormating.dateFormatMonthYear(inBody.getDATE_OF_INBODY()).equals(date)) {
+                inbody = inBody;
+                break;
+            }
         }
         return inbody;
     }

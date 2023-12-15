@@ -29,7 +29,11 @@ public class Customer extends Person implements Serializable {
       );
    }
    public void getInbodyInfo(String date,ArrayList<InBody>inBodies) {
-      System.out.println(Searching.searchInBody(inBodies,date));
+      InBody inBody = Searching.searchInBody(inBodies,date);
+      if (inBody == null)
+         System.out.println("No inbody had done in this date");
+      else
+         System.out.println(inBody);
    }
    public void CaculatePerfectWeight(Customer userCustomer) {
       int size = userCustomer.getInBodies().size();  /* to get last inbody */

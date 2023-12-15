@@ -73,11 +73,11 @@ public class Main {
         int choiceFeature;
         int coachId;
         int customerId;
+        int checkValue;
         String equipmentCode;
         String date;
         String username;
         String password;
-
         System.out.println("**************** Welcome to GYM ***************");
 
         System.out.print("Enter username: ");
@@ -213,9 +213,11 @@ public class Main {
             }
             // ********* the end of Admin *********** //
             } else if (userCustomer != null) {
+            /* ************* Customer ************* */
+            System.out.println("\nWelcome " + userCustomer.getName() + "\n");
+                do{
                 System.out.println("[1] Get Coach Info\n[2] Gym Equipment\n[3] Membership's Plan\n[4] In-body Info\n[5] Kilos Required");
-                System.out.print("Enter Operation: ");
-                choiceOperation = input.nextInt();
+                choiceOperation = Validate.checkInt(1,5);
                 switch (choiceOperation) {
                     case 1:
                         Coach coach = Searching.searchCoach(gym.getCoaches(),userCustomer.getSubscription().getAssignedCoachID());
@@ -234,8 +236,12 @@ public class Main {
                         break;
                     case 5:
                         userCustomer.CaculatePerfectWeight(userCustomer);
+                        break;
                 }
-            } else if (userCoach != null) {
+                System.out.println("Do you want to do another operation?\n" + "[1] yes [2] logOut");
+                checkValue = Validate.checkInt(1,2);
+            }while (checkValue == 1 );
+        } else if (userCoach != null) {
                 //************ COACH ************//
             DisplayObject.displayCustomers(Searching.searchCustomers(gym.getCustomers(),userCoach.getId()));
             ArrayList<Customer> myCustomers = Searching.searchCustomers(gym.getCustomers(),userCoach.getId());
