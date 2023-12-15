@@ -63,4 +63,33 @@ public class Searching {
         return inbody;
     }
 
+    public static ArrayList<Customer> searchCustomers(ArrayList<Customer> customers,int coachId) {
+        ArrayList<Customer> customerArrayList = new ArrayList<>();
+        for(Customer customer : customers){
+            if(customer.getSubscription().getAssignedCoachID()==coachId)
+                customerArrayList.add(customer);
+        }
+        return customerArrayList;
+    }
+    public static Customer searchCustomer(String username, String password, ArrayList<Customer> customers) {
+        Customer customer = null;
+        for (Customer c:customers) {
+            if(c.getEmail().equals(username) && c.getPassword().equals(password)) {
+                customer=c;
+                break;
+            }
+        }
+        return customer;
+    }
+
+    public static Coach searchCoach(String username, String password, ArrayList<Coach> coaches) {
+        Coach coach = null;
+        for (Coach c:coaches) {
+            if(c.getEmail().equals(username) && c.getPassword().equals(password)) {
+                coach=c;
+                break;
+            }
+        }
+        return coach;
+    }
 }
