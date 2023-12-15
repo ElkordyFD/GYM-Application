@@ -202,7 +202,7 @@ public class Main {
                     DisplayObject.displayCustomers(Admin.getCustomerOfSpecificCoach(gym.getSubscriptions(), gym.getCustomers(), coachId));
                     break;
                 case 5:
-                    System.out.println("Enter the date: ");
+                    System.out.print("Enter the date: ");
                     date = input.next();
                     System.out.println(Admin.getGymIncome(gym.getCustomers(), date));
                     break;
