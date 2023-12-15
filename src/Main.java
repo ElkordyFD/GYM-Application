@@ -22,11 +22,16 @@ public class Main {
         equipments.add(equipment2);
 
         InBody inBody1 = new InBody(1, LocalDate.now(), 1.8f, 60.8f, 13.4f, 4.5f, 65, 18.4f);
-        InBody inBody2 = new InBody(2, LocalDate.now(), 1.5f, 76.4f, 7, 6.4f, 85, 32.4f);
+        InBody inBody2 = new InBody(2, LocalDate.now().minusMonths(1), 1.5f, 76.4f, 7, 6.4f, 85, 32.4f);
+        InBody inBody3 = new InBody(2, LocalDate.now(), 1.6f, 75.4f, 6, 7.4f, 34, 36.4f);
+        InBody inBody4 = new InBody(3, LocalDate.now(), 1.8f, 34.4f, 7, 6.4f, 85, 32.4f);
         ArrayList<InBody> inBodies1 = new ArrayList<>();
         inBodies1.add(inBody1);
         ArrayList<InBody> inBodies2 = new ArrayList<>();
         inBodies2.add(inBody2);
+        inBodies2.add(inBody3);
+        ArrayList<InBody> inBodies3 = new ArrayList<>();
+        inBodies3.add(inBody4);
 
         MembershipPlan membershipPlan1 = new MembershipPlan(LocalDate.now().minusMonths(2), 6, 450);
         MembershipPlan membershipPlan2 = new MembershipPlan(LocalDate.now().minusDays(3), 3, 650);
@@ -42,7 +47,7 @@ public class Main {
 
         Customer customer1 = new Customer(1, "1", "Rashed", 'M', "Street", "015", "Rashed@gmail.com", inBodies1, subscription1);
         Customer customer2 = new Customer(2, "1", "Tamer", 'M', "Street", "010", "T@gmail.com", inBodies2, subscription2);
-        Customer customer3 = new Customer(3, "1", "Raof", 'M', "Street", "010", "H@gmail.com", inBodies2, subscription3);
+        Customer customer3 = new Customer(3, "1", "Raof", 'M', "Street", "010", "H@gmail.com", inBodies3, subscription3);
         customers.add(customer1);
         customers.add(customer2);
         customers.add(customer3);
@@ -232,7 +237,8 @@ public class Main {
                 }
             } else if (userCoach != null) {
                 //************ COACH ************//
-                ArrayList<Customer> myCustomers = Searching.searchCustomers(gym.getCustomers(),userCoach.getId());
+            DisplayObject.displayCustomers(Searching.searchCustomers(gym.getCustomers(),userCoach.getId()));
+            ArrayList<Customer> myCustomers = Searching.searchCustomers(gym.getCustomers(),userCoach.getId());
                 System.out.println(
                         "\n" +
                                 "[1] Get inbody history of a customer\n" +
