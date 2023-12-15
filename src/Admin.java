@@ -208,8 +208,11 @@ public class Admin {
         (equipments).remove(equipment);
     }
 
-    public static Subscription getSubscriptionHistoryForACustomer(ArrayList<Customer> customers, int id) {
-        Subscription subscription = (Searching.searchCustomer(customers, id)).getSubscription();
+    public static Subscription getSubscriptionHistoryForACustomer(ArrayList<Customer> customers, int customerId) {
+        Customer customer = (Searching.searchCustomer(customers, customerId));
+        Subscription subscription=null;
+        if(customer != null)
+            subscription = customer.getSubscription();
         return subscription;
     }
 

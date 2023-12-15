@@ -79,7 +79,6 @@ public class Main {
         String username;
         String password;
         System.out.println("**************** Welcome to GYM ***************");
-
         System.out.print("Enter username: ");
         username = input.next();
         System.out.print("Enter password: ");
@@ -89,128 +88,156 @@ public class Main {
         if (username.equals("admin") && password.equals("admin")) {
             //************ ADMIN ************//
             System.out.println("**************** Welcome Admin! ****************");
-            System.out.println("[1] Modify\n[2] Show the subscription history for a customer\n[3] Display all the customers that subscribed to the gym in a given month/day\n[4] Display all the customers of a specific coach\n[5] Display the GYM income in a given month\n[6] Display the coaches sorted in terms of the most assigned number of customers to the coaches");
-            System.out.print("Enter feature: ");
-            choiceFeature = input.nextInt();
-            switch (choiceFeature) {
-                case 1:
-                    System.out.println("[1] add\n[2] edit\n[3] delete");
-                    System.out.print("Enter operation: ");
-                    choiceOperation = input.nextInt();
-                    switch (choiceOperation) {
-                        case 1:
-                            System.out.println("[1] Coach\n[2] Customer\n[3] Equipment");
-                            System.out.print("Enter entity: ");
-                            choiceObject = input.nextInt();
-                            switch (choiceObject) {
-                                case 1:
-                                    Admin.addCoach(gym.getCoaches());
-                                    break;
-                                case 2:
-                                    Admin.addCustomer(gym.getCustomers());
-                                    break;
-                                case 3:
-                                    Admin.addEquipment(gym.getSports_equipment());
-                                    break;
-                            }
-                            break;
-                        case 2:
-                            System.out.println("[1] Coach\n[2] Customer\n[3] Equipment");
-                            System.out.print("Enter entity: ");
-                            choiceObject = input.nextInt();
-                            switch (choiceObject) {
-                                case 1:
-                                    DisplayObject.displayCoaches(gym.getCoaches());
-                                    System.out.print("Enter Coach's id: ");
-                                    coachId = input.nextInt();
-                                    Coach coach = Searching.searchCoach(gym.getCoaches(), coachId);
-                                    System.out.println("[1] id\n[2] password\n[3] name\n[4] gender\n[5] address\n[6] phoneNumber\n[7] email\n[8] workingHours");
-                                    System.out.print("Enter attribute you will modify: ");
-                                    choiceAttribute = input.nextInt();
-                                    Admin.modify(coach, choiceAttribute, gym.getSubscriptions(), coachId);
-                                    DisplayObject.displayCoaches(gym.getCoaches());
-                                    break;
-                                case 2:
-                                    DisplayObject.displayCustomers(gym.getCustomers());
-                                    System.out.print("Enter Customer's id: ");
-                                    customerId = input.nextInt();
-                                    Customer customer = Searching.searchCustomer(gym.getCustomers(), customerId);
-                                    System.out.println("[1] id\n[2] password\n[3] name\n[4] gender\n[5] address\n[6] phoneNumber\n[7] email");
-                                    System.out.print("Enter attribute you will modify: ");
-                                    choiceAttribute = input.nextInt();
-                                    Admin.modify(customer, choiceAttribute);
-                                    DisplayObject.displayCustomers(gym.getCustomers());
-                                    break;
-                                case 3:
-                                    DisplayObject.displayEquipments(gym.getSports_equipment());
-                                    System.out.print("Enter Equipment's code: ");
-                                    equipmentCode = input.next();
-                                    Equipment equipment = Searching.searchEquipment(gym.getSports_equipment(), equipmentCode);
-                                    System.out.println("[1] name\n[2] code\n[3] quantity");
-                                    System.out.print("Enter attribute you will modify: ");
-                                    choiceAttribute = input.nextInt();
-                                    Admin.modify(equipment, choiceAttribute);
-                                    DisplayObject.displayEquipments(gym.getSports_equipment());
-                                    break;
-                            }
-                            break;
-                        case 3:
-                            System.out.println("[1] Coach\n[2] Customer\n[3] Equipment");
-                            System.out.print("Enter entity: ");
-                            choiceObject = input.nextInt();
-                            switch (choiceObject) {
-                                case 1:
-                                    DisplayObject.displayCoaches(gym.getCoaches());
-                                    System.out.print("Enter Coach's id: ");
-                                    coachId = input.nextInt();
-                                    Coach coach = Searching.searchCoach(gym.getCoaches(), coachId);
-                                    Admin.delete(coach, gym.getCoaches());
-                                    break;
-                                case 2:
-                                    DisplayObject.displayCustomers(gym.getCustomers());
-                                    System.out.print("Enter Customer's id: ");
-                                    customerId = input.nextInt();
-                                    Customer customer = Searching.searchCustomer(gym.getCustomers(), customerId);
-                                    Admin.delete(customer, gym.getCustomers());
-                                    break;
-                                case 3:
-                                    DisplayObject.displayEquipments(gym.getSports_equipment());
-                                    System.out.print("Enter Equipment's code: ");
-                                    equipmentCode = input.next();
-                                    Equipment equipment = Searching.searchEquipment(gym.getSports_equipment(), equipmentCode);
-                                    Admin.delete(equipment, gym.getSports_equipment());
-                                    break;
-                                default:
-
-                            }
-                            break;
-                    }
-                    break;
-                case 2:
-                    System.out.print("Enter customer's id: ");
-                    customerId = input.nextInt();
-                    System.out.println(Admin.getSubscriptionHistoryForACustomer(gym.getCustomers(), customerId));
-                    break;
-                case 3:
-                    System.out.print("Enter the date: ");
-                    date = input.next();
-                    DisplayObject.displayCustomers(Admin.getCustomerInSpecificDate(gym.getCustomers(), date));
-                    break;
-                case 4:
-                    System.out.print("Enter Coach's id: ");
-                    coachId = input.nextInt();
-                    DisplayObject.displayCustomers(Admin.getCustomerOfSpecificCoach(gym.getSubscriptions(), gym.getCustomers(), coachId));
-                    break;
-                case 5:
-                    System.out.print("Enter the date: ");
-                    date = input.next();
-                    System.out.println(Admin.getGymIncome(gym.getCustomers(), date));
-                    break;
-                case 6:
-                    ArrayList<CoachRecord> coachRecords = Admin.getDescendingCoaches(gym.getSubscriptions(), gym.getCoaches());
-                    Admin.getCoachesAssignedCustomer(coachRecords, gym.getCoaches());
-                    break;
-            }
+            do {
+                System.out.println("[1] Modify\n[2] Show the subscription history for a customer\n[3] Display all the customers that subscribed to the gym in a given month/day\n[4] Display all the customers of a specific coach\n[5] Display the GYM income in a given month\n[6] Display the coaches sorted in terms of the most assigned number of customers to the coaches");
+                choiceFeature = Validate.checkInt(1,6);
+                switch (choiceFeature) {
+                    case 1:
+                        System.out.println("[1] add\n[2] edit\n[3] delete");
+                        choiceOperation = Validate.checkInt(1,3);
+                        switch (choiceOperation) {
+                            case 1:
+                                System.out.println("[1] Coach\n[2] Customer\n[3] Equipment");
+                                choiceObject = Validate.checkInt(1,3);
+                                switch (choiceObject) {
+                                    case 1:
+                                        Admin.addCoach(gym.getCoaches());
+                                        break;
+                                    case 2:
+                                        Admin.addCustomer(gym.getCustomers());
+                                        break;
+                                    case 3:
+                                        Admin.addEquipment(gym.getSports_equipment());
+                                        break;
+                                }
+                                break;
+                            case 2:
+                                System.out.println("[1] Coach\n[2] Customer\n[3] Equipment");
+                                choiceObject = Validate.checkInt(1,3);
+                                switch (choiceObject) {
+                                    case 1:
+                                        DisplayObject.displayCoaches(gym.getCoaches());
+                                        System.out.print("Enter Coach's id: ");
+                                        coachId = Validate.checkInt();
+                                        Coach coach = Searching.searchCoach(gym.getCoaches(), coachId);
+                                        if (coach != null) {
+                                            System.out.println("[1] id\n[2] password\n[3] name\n[4] gender\n[5] address\n[6] phoneNumber\n[7] email\n[8] workingHours");
+                                            System.out.print("Enter attribute you will modify: ");
+                                            choiceAttribute = input.nextInt();
+                                            Admin.modify(coach, choiceAttribute, gym.getSubscriptions(), coachId);
+                                            DisplayObject.displayCoaches(gym.getCoaches());
+                                        }
+                                        else
+                                            System.out.println("there isn't Coach with this id");
+                                        break;
+                                    case 2:
+                                        DisplayObject.displayCustomers(gym.getCustomers());
+                                        System.out.print("Enter Customer's id: ");
+                                        customerId = Validate.checkInt();
+                                        Customer customer = Searching.searchCustomer(gym.getCustomers(), customerId);
+                                        if (customer != null) {
+                                            System.out.println("[1] id\n[2] password\n[3] name\n[4] gender\n[5] address\n[6] phoneNumber\n[7] email");
+                                            choiceAttribute = Validate.checkInt(1,7);
+                                            Admin.modify(customer, choiceAttribute);
+                                            DisplayObject.displayCustomers(gym.getCustomers());
+                                        }
+                                        else
+                                            System.out.println("there isn't Customer with this id");
+                                        break;
+                                    case 3:
+                                        DisplayObject.displayEquipments(gym.getSports_equipment());
+                                        System.out.print("Enter Equipment's code: ");
+                                        equipmentCode = input.next();
+                                        Equipment equipment = Searching.searchEquipment(gym.getSports_equipment(), equipmentCode);
+                                        if(equipment != null) {
+                                            System.out.println("[1] name\n[2] code\n[3] quantity");
+                                            System.out.print("Enter attribute you will modify: ");
+                                            choiceAttribute = Validate.checkInt(1,3);
+                                            Admin.modify(equipment, choiceAttribute);
+                                        }
+                                        else
+                                            System.out.println("there isn't any equipment with this code");
+                                        break;
+                                }
+                                break;
+                            case 3:
+                                System.out.println("[1] Coach\n[2] Customer\n[3] Equipment");
+                                choiceObject = Validate.checkInt(1,3);
+                                switch (choiceObject) {
+                                    case 1:
+                                        DisplayObject.displayCoaches(gym.getCoaches());
+                                        System.out.print("Enter Coach's id: ");
+                                        coachId = Validate.checkInt();
+                                        Coach coach = Searching.searchCoach(gym.getCoaches(), coachId);
+                                        if(coach != null)
+                                            Admin.delete(coach, gym.getCoaches());
+                                        else
+                                            System.out.println("there isn't Coach with this id");
+                                        break;
+                                    case 2:
+                                        DisplayObject.displayCustomers(gym.getCustomers());
+                                        System.out.print("Enter Customer's id: ");
+                                        customerId = Validate.checkInt();
+                                        Customer customer = Searching.searchCustomer(gym.getCustomers(), customerId);
+                                        if(customer != null)
+                                            Admin.delete(customer, gym.getCustomers());
+                                        else
+                                            System.out.println("there isn't Customer with this id");
+                                        break;
+                                    case 3:
+                                        DisplayObject.displayEquipments(gym.getSports_equipment());
+                                        System.out.print("Enter Equipment's code: ");
+                                        equipmentCode = input.next();
+                                        Equipment equipment = Searching.searchEquipment(gym.getSports_equipment(), equipmentCode);
+                                        if(equipment != null)
+                                            Admin.delete(equipment, gym.getSports_equipment());
+                                        else
+                                            System.out.println("there isn't any equipment with this code");
+                                        break;
+                                }
+                                break;
+                        }
+                        break;
+                    case 2:
+                        System.out.print("Enter customer's id: ");
+                        customerId = Validate.checkInt();
+                        Subscription subscription = (Admin.getSubscriptionHistoryForACustomer(gym.getCustomers(), customerId));
+                        if(subscription != null)
+                            System.out.println(subscription);
+                        else
+                            System.out.println("there isn't Customer with this id");
+                        break;
+                    case 3:
+                        System.out.print("Enter the date: ");
+                        date = input.next();
+                        ArrayList<Customer>customerArray = (Admin.getCustomerInSpecificDate(gym.getCustomers(), date));
+                        if(customerArray.size() != 0)
+                            DisplayObject.displayCustomers(customerArray);
+                        else
+                            System.out.println("No customer subscripted in this date");
+                        break;
+                    case 4:
+                        System.out.print("Enter Coach's id: ");
+                        coachId = Validate.checkInt();
+                        ArrayList<Customer>customerArrayList=(Admin.getCustomerOfSpecificCoach(gym.getSubscriptions(), gym.getCustomers(), coachId));
+                        if(customerArrayList.size() != 0)
+                            DisplayObject.displayCustomers(customerArrayList);
+                        else
+                            System.out.println("There isn't Coach with this id");
+                        break;
+                    case 5:
+                        System.out.print("Enter the date: ");
+                        date = input.next();
+                        System.out.println(Admin.getGymIncome(gym.getCustomers(), date));
+                        break;
+                    case 6:
+                        ArrayList<CoachRecord> coachRecords = Admin.getDescendingCoaches(gym.getSubscriptions(), gym.getCoaches());
+                        Admin.getCoachesAssignedCustomer(coachRecords, gym.getCoaches());
+                        break;
+                }
+                System.out.println("Do you want to do another operation?\n" + "[1] yes [2] logOut");
+                checkValue = Validate.checkInt(1, 2);
+            } while (checkValue == 1);
             // ********* the end of Admin *********** //
             } else if (userCustomer != null) {
             /* ************* Customer ************* */
