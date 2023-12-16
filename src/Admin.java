@@ -1,5 +1,6 @@
 package src;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -225,15 +226,21 @@ public class Admin {
         (equipments).remove(equipment);
     }
 
-    public static Subscription getSubscriptionHistoryForACustomer(ArrayList<Customer> customers, int customerId) {
+    public static void showSubscriptionHistoryForACustomer(ArrayList<Customer> customers) {
+        System.out.print("Enter customer's id: ");
+        int customerId = Validate.checkInt();
         Customer customer = (Searching.searchCustomer(customers, customerId));
-        Subscription subscription=null;
-        if(customer != null)
-            subscription = customer.getSubscription();
-        return subscription;
+        if(customer == null)
+            System.out.println("there is no Customer with this id");
+        else
+            System.out.println(customer.getSubscription());
     }
 
-    public static ArrayList<Customer> getCustomerInSpecificDate(ArrayList<Customer> c, String date) {
+    public static void getCustomerInSpecificDate(ArrayList<Customer> c) {
+        Scanner input = new Scanner(System.in);
+        String date;
+        System.out.print("Enter the date: ");
+        date = input.next();
         ArrayList<Customer> customers = new ArrayList<>();
         String myDate;
         for (Customer customer : c) {
@@ -241,29 +248,40 @@ public class Admin {
             if (myDate.equals(date))
                 customers.add(customer);
         }
-        return customers;
+        if (customers.size() != 0)
+            DisplayObject.displayCustomers(customers);
+        else
+            System.out.println("No customers subscripted in this date");
     }
 
-    public static int getGymIncome(ArrayList<Customer> customers, String date) {
+    public static void showGymIncomeInSpecificMonth(ArrayList<Customer> customers) {
+        Scanner input = new Scanner(System.in);
         int income = 0;
-        String myDate;
+        System.out.print("Enter date");
+        String myDate = input.next();
         for (Customer customer : customers) {
             myDate = DateFormating.dateFormatMonth(customer.getSubscription().getMembershipPlan().getStartDate());
-            if (myDate.equals(date)) {
+            if (myDate.equals(myDate)) {
                 income += customer.getSubscription().getMembershipPlan().getPrice();
             }
         }
-        return income;
+        System.out.println(income);
     }
 
-    public static ArrayList<Customer> getCustomerOfSpecificCoach(ArrayList<Subscription> subscriptions, ArrayList<Customer> customerss, int coachId) {
+    public static void showCustomerOfSpecificCoach(ArrayList<Subscription> subscriptions, ArrayList<Customer> customerss) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter Coach's id: ");
+        int coachId = Validate.checkInt();
         ArrayList<Customer> customers = new ArrayList<>();
         for (Subscription subscription : subscriptions) {
             if (subscription.getAssignedCoachID() == coachId) {
                 customers.add(Searching.searchCustomer(customerss, subscription.getCustomerID()));
             }
         }
-        return customers;
+        if (customers.size() != 0)
+            DisplayObject.displayCustomers(customers);
+        else
+            System.out.println("There is no Coach with this id");
     }
     public static int getCounterOfCustomerOfSpecificCoach(ArrayList<Subscription> subscriptions, int coachId) {
         int countOfCustomer=0;
@@ -283,7 +301,8 @@ public class Admin {
         }
         return coachesRecord;
     }
-    public static void getCoachesAssignedCustomer(ArrayList<CoachRecord>coachRecords,ArrayList<Coach>coaches) {
+    public static void showCoachesAssignedCustomer(ArrayList<Subscription>subscriptions,ArrayList<Coach>coaches) {
+        ArrayList<CoachRecord> coachRecords = Admin.getDescendingCoaches(subscriptions,coaches);
         DisplayObject.displayDescendingCoaches(coachRecords,coaches);
     }
 }

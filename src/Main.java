@@ -222,46 +222,25 @@ public class Main {
                                     }
                                     break;
                                 case 2:
-                                    System.out.print("Enter customer's id: ");
-                                    customerId = Validate.checkInt();
-                                    Subscription subscription = (Admin.getSubscriptionHistoryForACustomer(gym.getCustomers(), customerId));
-                                    if (subscription != null)
-                                        System.out.println(subscription);
-                                    else
-                                        System.out.println("there isn't Customer with this id");
+                                    Admin.showSubscriptionHistoryForACustomer(gym.getCustomers());
                                     break;
                                 case 3:
-                                    System.out.print("Enter the date: ");
-                                    date = input.next();
-                                    ArrayList<Customer> customerArray = (Admin.getCustomerInSpecificDate(gym.getCustomers(), date));
-                                    if (customerArray.size() != 0)
-                                        DisplayObject.displayCustomers(customerArray);
-                                    else
-                                        System.out.println("No customer subscripted in this date");
+                                    Admin.getCustomerInSpecificDate(gym.getCustomers());
                                     break;
                                 case 4:
-                                    System.out.print("Enter Coach's id: ");
-                                    coachId = Validate.checkInt();
-                                    ArrayList<Customer> customerArrayList = (Admin.getCustomerOfSpecificCoach(gym.getSubscriptions(), gym.getCustomers(), coachId));
-                                    if (customerArrayList.size() != 0)
-                                        DisplayObject.displayCustomers(customerArrayList);
-                                    else
-                                        System.out.println("There isn't Coach with this id");
+                                    Admin.showCustomerOfSpecificCoach(gym.getSubscriptions(), gym.getCustomers());
                                     break;
                                 case 5:
-                                    System.out.print("Enter the date: ");
-                                    date = input.next();
-                                    System.out.println(Admin.getGymIncome(gym.getCustomers(), date));
+                                    Admin.showGymIncomeInSpecificMonth(gym.getCustomers());
                                     break;
                                 case 6:
-                                    ArrayList<CoachRecord> coachRecords = Admin.getDescendingCoaches(gym.getSubscriptions(), gym.getCoaches());
-                                    Admin.getCoachesAssignedCustomer(coachRecords, gym.getCoaches());
+                                    Admin.showCoachesAssignedCustomer(gym.getSubscriptions(),gym.getCoaches());
                                     break;
                             }
                             System.out.println("Do you want to do another operation?\n" + "[1] yes [2] logOut");
                             checkValue = Validate.checkInt(1, 2);
                         } while (checkValue == 1);
-                        // ********* the end of Admin *********** //
+                        // ************* the end of Admin ************** //
                     } else if (userCustomer != null) {
                         /* ************* Customer ************* */
                         System.out.println("\nWelcome " + userCustomer.getName() + "\n");
@@ -328,6 +307,7 @@ public class Main {
                             break;
                         case 2:
                             Register.registerCustomer(gym.getCustomers());
+                            break;
                     }
                     System.out.println("Registered done");
                     System.out.println("[1] back to menu   [2] exit program");
