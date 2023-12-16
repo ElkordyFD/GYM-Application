@@ -305,4 +305,14 @@ public class Admin {
         ArrayList<CoachRecord> coachRecords = Admin.getDescendingCoaches(subscriptions,coaches);
         DisplayObject.displayDescendingCoaches(coachRecords,coaches);
     }
+    public static int generateCoachID(ArrayList<Coach>coaches) {
+        int size = coaches.size();
+        int id = (coaches.get(size-1).getId())+1;
+        return id;
+    }
+    public static int generateCustomerID(ArrayList<Customer>customers) {
+        int size = customers.size();
+        int id = (customers.get(size-1).getId())+1;
+        return id;
+    }
 }

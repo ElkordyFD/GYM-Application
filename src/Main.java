@@ -64,7 +64,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         GYM gym = seed();
-
         Scanner input = new Scanner(System.in);
         int choice;
         int choiceOperation;
