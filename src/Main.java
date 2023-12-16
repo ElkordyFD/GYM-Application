@@ -75,6 +75,7 @@ public class Main {
         int customerId;
         int checkValue;
         int choiceCredentials;
+        int choiceRegister;
         String equipmentCode;
         String date;
         String username;
@@ -85,7 +86,7 @@ public class Main {
         boolean valueChecked = false;
         boolean adminChecked = false;
         System.out.println("**************** Welcome to GYM ***************");
-        System.out.println("[1].Login  2.[register]");
+        System.out.println("[1].Login  [2].register");
         choiceCredentials = Validate.checkInt(1, 2);
         switch (choiceCredentials) {
             case 1:
@@ -339,7 +340,17 @@ public class Main {
                 }
                 break;
             case 2:
-                // Register
+                // register
+                System.out.println("[1] Coach\n[2] Customer");
+                choiceRegister = Validate.checkInt(1,2);
+                switch (choiceRegister) {
+                    case 1:
+                        Register.registerCoach(gym.getCoaches());
+                        break;
+                    case 2:
+                        Register.registerCustomer(gym.getCustomers());
+                }
+                System.out.println("");
         }
     }
 }

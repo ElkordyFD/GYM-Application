@@ -6,69 +6,89 @@ import java.util.Scanner;
 public class Admin {
     private final String username = "admin";
     private final String password = "admin";
+    static private int id;
+    static private String pass;
+    static private String name;
+    static private char gender;
+    static private String address;
+    static private String phoneNumber;
+    static private String email;
+    static Scanner input = new Scanner(System.in);
 
     public static void addCoach(ArrayList<Coach> coaches) {
-        Scanner input = new Scanner(System.in);
-        int id;
-        String password;
-        String name;
-        char gender;
-        String address;
-        String phoneNumber;
-        String email;
         int workingHours;
-        System.out.println("Enter id: ");
-        id = input.nextInt();
-        System.out.println("Enter password: ");
-        password = input.next();
-        System.out.println("Enter name: ");
+        boolean checkWorkingHours = false;
+        boolean checkEmail = false;
+        System.out.print("Enter id: ");
+        id = Validate.checkInt();
+        System.out.print("Enter password: ");
+        pass = input.next();
+        System.out.print("Enter name: ");
         name = input.next();
-        System.out.println("Enter gender: ");
-        gender = input.next().charAt(0);
-        System.out.println("Enter address: ");
+        System.out.print("Enter gender: ");
+        gender = Validate.getGender();
+        System.out.print("Enter address: ");
         address = input.next();
-        System.out.println("Enter phoneNumber: ");
+        System.out.print("Enter phoneNumber: ");
         phoneNumber = input.next();
-        System.out.println("Enter email: ");
-        email = input.next();
-        System.out.println("Enter WorkingHours: ");
-        workingHours = input.nextInt();
-        Coach coach = new Coach(id, password, name, gender, address, phoneNumber, email, workingHours);
+        do {
+            if (checkEmail)
+                System.out.println("Invalid email, the email must have '@' and '.com' ");
+            System.out.print("Enter email: ");
+            email = input.next();
+            if(email.contains("@") && email.contains(".com"))
+                checkEmail = false;
+            else {
+                checkEmail = true;
+            }
+        } while (checkEmail);
+        do {
+            if(checkWorkingHours)
+                System.out.println("Invalid data");
+            System.out.print("Enter WorkingHours: ");
+            workingHours = Validate.checkInt();
+            if (workingHours>8) {
+                System.out.println("The Coach work not exceed 8 hours");
+                checkWorkingHours = true;
+            } else
+                checkWorkingHours = false;
+        } while (checkWorkingHours);
+        Coach coach = new Coach(id, pass, name, gender, address, phoneNumber, email, workingHours);
         coaches.add(coach);
     }
 
     public static void addCustomer(ArrayList<Customer> customers) {
-        Scanner input = new Scanner(System.in);
         ArrayList<InBody> inBodies = new ArrayList<>();
         Subscription subscription = new Subscription();
-        int id;
-        String password;
-        String name;
-        char gender;
-        String address;
-        String phoneNumber;
-        String email;
-        int workingHours;
-        System.out.println("Enter id: ");
-        id = input.nextInt();
-        System.out.println("Enter password: ");
-        password = input.next();
-        System.out.println("Enter name: ");
+        boolean checkEmail = false;
+        System.out.print("Enter id: ");
+        id = Validate.checkInt();
+        System.out.print("Enter password: ");
+        pass = input.next();
+        System.out.print("Enter name: ");
         name = input.next();
-        System.out.println("Enter gender: ");
-        gender = input.next().charAt(0);
-        System.out.println("Enter address: ");
+        System.out.print("Enter gender: ");
+        gender = Validate.getGender();
+        System.out.print("Enter address: ");
         address = input.next();
-        System.out.println("Enter phoneNumber: ");
+        System.out.print("Enter phoneNumber: ");
         phoneNumber = input.next();
-        System.out.println("Enter email: ");
-        email = input.next();
-        Customer customer = new Customer(id, password, name, gender, address, phoneNumber, email, inBodies, subscription);
+        do {
+            if (checkEmail)
+                System.out.println("Invalid email, the email must have '@' and '.com' ");
+            System.out.print("Enter email: ");
+            email = input.next();
+            if(email.contains("@") && email.contains(".com"))
+                checkEmail = false;
+            else {
+                checkEmail = true;
+            }
+        } while (checkEmail);
+        Customer customer = new Customer(id, pass, name, gender, address, phoneNumber, email, inBodies, subscription);
         customers.add(customer);
     }
 
     public static void addEquipment(ArrayList<Equipment> equipments) {
-        Scanner input = new Scanner(System.in);
         String name;
         String code;
         int quantity;
@@ -77,13 +97,12 @@ public class Admin {
         System.out.print("Enter code: ");
         code = input.next();
         System.out.print("Enter quantity: ");
-        quantity = input.nextInt();
+        quantity = Validate.checkInt();
         Equipment equipment = new Equipment(name, code, quantity);
         equipments.add(equipment);
     }
 
     public static void modify(Coach coach, int choice, ArrayList<Subscription> subscriptions, int coachId) {
-        Scanner input = new Scanner(System.in);
         switch (choice) {
             case 1:
                 System.out.println("Enter new id: ");
@@ -133,7 +152,6 @@ public class Admin {
     }
 
     public static void modify(Customer customer, int choice) {
-        Scanner input = new Scanner(System.in);
         switch (choice) {
             case 1:
                 System.out.println("Enter new id: ");
@@ -176,7 +194,6 @@ public class Admin {
     }
 
     public static void modify(Equipment equipment, int choice) {
-        Scanner input = new Scanner(System.in);
         switch (choice) {
             case 1:
                 System.out.println("Enter new name: ");
