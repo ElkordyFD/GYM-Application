@@ -28,7 +28,11 @@ public class Customer extends Person implements Serializable {
               "workingHours: " + coach.getWorkingHoursPerDay()
       );
    }
-   public void printInbodyInfo(String date,ArrayList<InBody>inBodies) {
+   public void printInbodyInfo(ArrayList<InBody>inBodies) {
+      Scanner input = new Scanner(System.in);
+      String date;
+      System.out.print("Enter date: ");
+      date = input.next();
       InBody inBody = Searching.searchInBody(inBodies,date);
       if (inBody == null)
          System.out.println("No inbody happened during this month");

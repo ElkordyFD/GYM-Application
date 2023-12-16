@@ -280,9 +280,7 @@ public class Main {
                                     System.out.println(userCustomer.getSubscription().getMembershipPlan());
                                     break;
                                 case 4:
-                                    System.out.print("Enter date: ");
-                                    date = input.next();
-                                    userCustomer.printInbodyInfo(date, userCustomer.getInBodies());
+                                    userCustomer.printInbodyInfo(userCustomer.getInBodies());
                                     break;
                                 case 5:
                                     userCustomer.CaculatePerfectWeight(userCustomer);
