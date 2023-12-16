@@ -3,6 +3,7 @@ package src;
 import java.io.Externalizable;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Coach extends Person implements Serializable {
     private int workingHoursPerDay;
@@ -22,22 +23,55 @@ public class Coach extends Person implements Serializable {
         this.workingHoursPerDay = workingHoursPerDay;
     }
 
-
+    public ArrayList<Customer> storeMyCustomer(ArrayList<Customer>customers,int coachId) {
+        ArrayList<Customer> myCustomers = Searching.searchCustomers(customers,coachId);
+        return myCustomers;
+    }
+    public void showMyCustomer(ArrayList<Customer>customers,int coachId) {
+        ArrayList<Customer>myCustomers = storeMyCustomer(customers,coachId);
+        DisplayObject.displayCustomers(myCustomers);
+    }
+    public void printInbodyHistoryforSpecificCustomer(ArrayList<Customer>customers,int coachId) {
+        Scanner input= new Scanner(System.in);
+        int myCustomerId;
+        System.out.print("Enter customer ID: ");
+        myCustomerId = Validate.checkInt();
+        ArrayList<Customer>myCustomers = storeMyCustomer(customers,coachId);
+        Customer customer = Searching.searchCustomer(myCustomers,myCustomerId);
+        if (customer != null)
+            DisplayObject.displayInBody(customer.getInBodies());
+        else
+            System.out.println("There is no customer with this ID");
+    }
+    public void printDetailsOfSpecificCustomerByName(ArrayList<Customer>customers,int coachID) {
+        Scanner input= new Scanner(System.in);
+        String name;
+        System.out.print("Enter customer name: ");
+        name = input.next();
+        ArrayList<Customer> myCustomers = storeMyCustomer(customers,coachID);
+        ArrayList<Customer> customer = Searching.searchCustomer(myCustomers,name);
+        if (customer.size() != 0)
+            DisplayObject.displayCustomers(customer);
+        else
+            System.out.println("There are no customer with this name");
+    }
+    public void showCustomersByGender(ArrayList<Customer>customers,int coachID) {
+        Scanner input= new Scanner(System.in);
+        char gender;
+        System.out.print("Enter gender(M/F): ");
+        gender = Validate.getGender();
+        ArrayList<Customer>myCustomers = storeMyCustomer(customers,coachID);
+        ArrayList<Customer> customer = Searching.searchCustomer(myCustomers,gender);
+        if (customer.size() != 0)
+            DisplayObject.displayCustomers(customer);
+        else
+            System.out.println("there aren't " + gender + " Customers");
+    }
 
     @Override
     public String toString() {
         return "Coach" + super.toString() +
                 "workingHoursPerDay=" + workingHoursPerDay +
                 '}';
-    }
-
-    public ArrayList<Integer> getCustomerIDs(ArrayList<Subscription> subscriptions) {
-        ArrayList<Integer> ids = new ArrayList<>();
-        for (Subscription s:subscriptions){
-            if(s.getAssignedCoachID() == this.getId()){
-                ids.add(s.getCustomerID());
-            }
-        }
-        return ids;
     }
 }

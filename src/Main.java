@@ -271,7 +271,7 @@ public class Main {
                             switch (choiceOperation) {
                                 case 1:
                                     Coach coach = Searching.searchCoach(gym.getCoaches(), userCustomer.getSubscription().getAssignedCoachID());
-                                    userCustomer.getCoachInfo(coach);
+                                    userCustomer.printCoachInfo(coach);
                                     break;
                                 case 2:
                                     DisplayObject.displayEquipments(gym.getSports_equipment());
@@ -282,7 +282,7 @@ public class Main {
                                 case 4:
                                     System.out.print("Enter date: ");
                                     date = input.next();
-                                    userCustomer.getInbodyInfo(date, userCustomer.getInBodies());
+                                    userCustomer.printInbodyInfo(date, userCustomer.getInBodies());
                                     break;
                                 case 5:
                                     userCustomer.CaculatePerfectWeight(userCustomer);
@@ -294,47 +294,25 @@ public class Main {
                     } else if (userCoach != null) {
                         //************ COACH ************//
                         do {
-                            DisplayObject.displayCustomers(Searching.searchCustomers(gym.getCustomers(), userCoach.getId()));
-                            ArrayList<Customer> myCustomers = Searching.searchCustomers(gym.getCustomers(), userCoach.getId());
                             System.out.println(
                                     "\n" +
-                                            "[1] Get inbody history of a customer\n" +
-                                            "[2] Search for customer by name\n" +
-                                            "[3] Show customers by gender");
-                            choice = Validate.checkInt(1, 3);
-                            ArrayList<Customer> customerArrayList = new ArrayList<>();
-                            int customerID;
-                            String name;
-                            Customer c;
-                            ArrayList<Customer> cus = new ArrayList<>();
-                            char gender;
+                                            "[1] show a list of all my customer\n"+
+                                            "[2] Get inbody history of a customer\n" +
+                                            "[3] Search for customer by name\n" +
+                                            "[4] Show customers by gender");
+                            choice = Validate.checkInt(1, 4);
                             switch (choice) {
                                 case 1:
-                                    System.out.print("Enter customer ID: ");
-                                    customerID = Validate.checkInt();
-                                    c = Searching.searchCustomer(myCustomers, customerID);
-                                    if (c != null)
-                                        DisplayObject.displayInBody(c.getInBodies());
-                                    else
-                                        System.out.println("there isn't Customer with this id");
+                                    userCoach.showMyCustomer(gym.getCustomers(),userCoach.getId());
                                     break;
                                 case 2:
-                                    System.out.print("Enter customer name: ");
-                                    name = input.next();
-                                    customerArrayList = Searching.searchCustomer(myCustomers, name);
-                                    if (customerArrayList.size() != 0)
-                                        DisplayObject.displayCustomers(customerArrayList);
-                                    else
-                                        System.out.println("there isn't customer with this name");
+                                    userCoach.printInbodyHistoryforSpecificCustomer(gym.getCustomers(),userCoach.getId());
                                     break;
                                 case 3:
-                                    System.out.print("Enter gender(M/F): ");
-                                    gender = Validate.getGender();
-                                    customerArrayList = Searching.searchCustomer(myCustomers, gender);
-                                    if (customerArrayList.size() != 0)
-                                        DisplayObject.displayCustomers(customerArrayList);
-                                    else
-                                        System.out.println("there aren't " + gender + " Customers");
+                                    userCoach.printDetailsOfSpecificCustomerByName(gym.getCustomers(),userCoach.getId());
+                                    break;
+                                case 4:
+                                    userCoach.showCustomersByGender(gym.getCustomers(),userCoach.getId());
                                     break;
                             }
                             System.out.println("Do you want to do another operation?\n" + "[1] yes [2] logOut");
