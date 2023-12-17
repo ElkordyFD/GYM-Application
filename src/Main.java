@@ -130,7 +130,7 @@ public class Main {
                                                     break;
                                                 case 2:
 
-                                                    Admin.addCustomer(gym.getCustomers(),gym.getCoaches(),gym.getSubscriptions());
+                                                    Admin.addCustomer(gym.getCustomers());
                                                     break;
                                                 case 3:
                                                     Admin.addEquipment(gym.getSports_equipment());
