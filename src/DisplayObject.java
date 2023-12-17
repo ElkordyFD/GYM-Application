@@ -37,4 +37,11 @@ public class DisplayObject {
             System.out.println(Searching.searchCoach(coaches,coachRecord.coachId()));
         }
     }
+    public static void displayAvailableCoaches(ArrayList<Coach>coaches,ArrayList<Subscription>subscriptions,int coachId) {
+        ArrayList<Coach> coachArrayList = new ArrayList<>();
+        if(Admin.getCounterOfCustomerOfSpecificCoach(subscriptions,coachId) < 10) {
+            coachArrayList.add(Searching.searchCoach(coaches,coachId));
+        }
+        displayCoaches(coachArrayList);
+    }
 }

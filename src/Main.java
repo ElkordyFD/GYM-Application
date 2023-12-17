@@ -129,7 +129,8 @@ public class Main {
                                                     Admin.addCoach(gym.getCoaches());
                                                     break;
                                                 case 2:
-                                                    Admin.addCustomer(gym.getCustomers());
+
+                                                    Admin.addCustomer(gym.getCustomers(),gym.getCoaches(),gym.getSubscriptions());
                                                     break;
                                                 case 3:
                                                     Admin.addEquipment(gym.getSports_equipment());
@@ -152,7 +153,7 @@ public class Main {
                                                         Admin.modify(coach, choiceAttribute, gym.getSubscriptions(), coachId);
                                                         DisplayObject.displayCoaches(gym.getCoaches());
                                                     } else
-                                                        System.out.println("there isn't Coach with this id");
+                                                        System.out.println("there is no Coach with this id");
                                                     break;
                                                 case 2:
                                                     DisplayObject.displayCustomers(gym.getCustomers());
@@ -165,7 +166,7 @@ public class Main {
                                                         Admin.modify(customer, choiceAttribute);
                                                         DisplayObject.displayCustomers(gym.getCustomers());
                                                     } else
-                                                        System.out.println("there isn't Customer with this id");
+                                                        System.out.println("there is no Customer with this id");
                                                     break;
                                                 case 3:
                                                     DisplayObject.displayEquipments(gym.getSports_equipment());
@@ -178,7 +179,7 @@ public class Main {
                                                         choiceAttribute = Validate.checkInt(1, 3);
                                                         Admin.modify(equipment, choiceAttribute);
                                                     } else
-                                                        System.out.println("there isn't any equipment with this code");
+                                                        System.out.println("there is no any equipment with this code");
                                                     break;
                                             }
                                             break;
@@ -187,34 +188,13 @@ public class Main {
                                             choiceObject = Validate.checkInt(1, 3);
                                             switch (choiceObject) {
                                                 case 1:
-                                                    DisplayObject.displayCoaches(gym.getCoaches());
-                                                    System.out.print("Enter Coach's id: ");
-                                                    coachId = Validate.checkInt();
-                                                    Coach coach = Searching.searchCoach(gym.getCoaches(), coachId);
-                                                    if (coach != null)
-                                                        Admin.delete(coach, gym.getCoaches());
-                                                    else
-                                                        System.out.println("there isn't Coach with this id");
+                                                    Admin.deleteCoach(gym.getCoaches());
                                                     break;
                                                 case 2:
-                                                    DisplayObject.displayCustomers(gym.getCustomers());
-                                                    System.out.print("Enter Customer's id: ");
-                                                    customerId = Validate.checkInt();
-                                                    Customer customer = Searching.searchCustomer(gym.getCustomers(), customerId);
-                                                    if (customer != null)
-                                                        Admin.delete(customer, gym.getCustomers());
-                                                    else
-                                                        System.out.println("there isn't Customer with this id");
+                                                    Admin.deleteCustomer(gym.getCustomers());
                                                     break;
                                                 case 3:
-                                                    DisplayObject.displayEquipments(gym.getSports_equipment());
-                                                    System.out.print("Enter Equipment's code: ");
-                                                    equipmentCode = input.next();
-                                                    Equipment equipment = Searching.searchEquipment(gym.getSports_equipment(), equipmentCode);
-                                                    if (equipment != null)
-                                                        Admin.delete(equipment, gym.getSports_equipment());
-                                                    else
-                                                        System.out.println("there isn't any equipment with this code");
+                                                    Admin.deleteEquipment(gym.getSports_equipment());
                                                     break;
                                             }
                                             break;

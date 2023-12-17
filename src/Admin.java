@@ -1,13 +1,13 @@
 package src;
 
 import java.awt.image.AreaAveragingScaleFilter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin {
     private final String username = "admin";
     private final String password = "admin";
-    static private int id;
     static private String pass;
     static private String name;
     static private char gender;
@@ -18,10 +18,9 @@ public class Admin {
 
     public static void addCoach(ArrayList<Coach> coaches) {
         int workingHours;
+        int idCoach = generateCoachID(coaches);
         boolean checkWorkingHours = false;
         boolean checkEmail = false;
-        System.out.print("Enter id: ");
-        id = Validate.checkInt();
         System.out.print("Enter password: ");
         pass = input.next();
         System.out.print("Enter name: ");
@@ -47,23 +46,25 @@ public class Admin {
             if(checkWorkingHours)
                 System.out.println("Invalid data");
             System.out.print("Enter WorkingHours: ");
-            workingHours = Validate.checkInt();
+            workingHours = Validate.checkInt(1,8);
             if (workingHours>8) {
                 System.out.println("The Coach work not exceed 8 hours");
                 checkWorkingHours = true;
             } else
                 checkWorkingHours = false;
         } while (checkWorkingHours);
-        Coach coach = new Coach(id, pass, name, gender, address, phoneNumber, email, workingHours);
+        Coach coach = new Coach(idCoach, pass, name, gender, address, phoneNumber, email, workingHours);
         coaches.add(coach);
     }
 
     public static void addCustomer(ArrayList<Customer> customers) {
+        int idCustomer = generateCustomerID(customers);
+        int idCoach=0;  /*not yet*/
+        int registeredMonth;
+        int price;
+        int choice;
         ArrayList<InBody> inBodies = new ArrayList<>();
-        Subscription subscription = new Subscription();
         boolean checkEmail = false;
-        System.out.print("Enter id: ");
-        id = Validate.checkInt();
         System.out.print("Enter password: ");
         pass = input.next();
         System.out.print("Enter name: ");
@@ -85,7 +86,20 @@ public class Admin {
                 checkEmail = true;
             }
         } while (checkEmail);
-        Customer customer = new Customer(id, pass, name, gender, address, phoneNumber, email, inBodies, subscription);
+        System.out.println("Enter membershipPLan Data");
+        System.out.print("Enter registeredMonth: ");
+        registeredMonth = Validate.checkInt();
+        System.out.println("Enter plan");
+        System.out.println("[1].3days plan   [2].6days plan");
+        choice = Validate.checkInt(1,2);
+        if(registeredMonth < 3) {
+            price = registeredMonth*200;
+        } else {
+            price = (registeredMonth*200)-((int)((registeredMonth*200)*(0.2)));
+        }
+        MembershipPlan membershipPlan = new MembershipPlan(LocalDate.now(),registeredMonth,price);
+        Subscription subscription = new Subscription(idCustomer,idCoach,membershipPlan);
+        Customer customer = new Customer(idCustomer, pass, name, gender, address, phoneNumber, email, inBodies, subscription);
         customers.add(customer);
     }
 
@@ -107,7 +121,7 @@ public class Admin {
         switch (choice) {
             case 1:
                 System.out.println("Enter new id: ");
-                int newId = input.nextInt();
+                int newId = Validate.checkInt();
                 for (Subscription subscription : subscriptions) {
                     if (subscription.getAssignedCoachID() == coachId)
                         subscription.setAssignedCoachID(newId);
@@ -116,37 +130,37 @@ public class Admin {
                 break;
             case 2:
                 System.out.println("Enter new password: ");
-                String password = input.nextLine();
+                String password = input.next();
                 (coach).setPassword(password);
                 break;
             case 3:
                 System.out.println("Enter new name: ");
-                String name = input.nextLine();
+                String name = input.next();
                 (coach).setName(name);
                 break;
             case 4:
                 System.out.println("Enter new gender: ");
-                char gender = input.next().charAt(0);
+                char gender = Validate.getGender();
                 (coach).setGender(gender);
                 break;
             case 5:
                 System.out.println("Enter new address: ");
-                String address = input.nextLine();
+                String address = input.next();
                 (coach).setAddress(address);
                 break;
             case 6:
                 System.out.println("Enter new phoneNumber: ");
-                String phoneNumber = input.nextLine();
+                String phoneNumber = input.next();
                 (coach).setPhoneNumber(phoneNumber);
                 break;
             case 7:
                 System.out.println("Enter new email: ");
-                String email = input.nextLine();
+                String email = input.next();
                 (coach).setEmail(email);
                 break;
             case 8:
                 System.out.println("Enter new WorkingHours: ");
-                int workingHours = input.nextInt();
+                int workingHours = Validate.checkInt(1,8);
                 (coach).setWorkingHoursPerDay(workingHours);
                 break;
         }
@@ -156,38 +170,38 @@ public class Admin {
         switch (choice) {
             case 1:
                 System.out.println("Enter new id: ");
-                int newId = input.nextInt();
+                int newId = Validate.checkInt();
                 (customer).setId(newId);
                 (customer).getSubscription().setCustomerID(newId);
                 break;
             case 2:
                 System.out.println("Enter new password: ");
-                String password = input.nextLine();
+                String password = input.next();
                 (customer).setPassword(password);
                 break;
             case 3:
                 System.out.println("Enter new name: ");
-                String name = input.nextLine();
+                String name = input.next();
                 (customer).setName(name);
                 break;
             case 4:
                 System.out.println("Enter new gender: ");
-                char gender = input.next().charAt(0);
+                char gender = Validate.getGender();
                 (customer).setGender(gender);
                 break;
             case 5:
                 System.out.println("Enter new address: ");
-                String address = input.nextLine();
+                String address = input.next();
                 (customer).setAddress(address);
                 break;
             case 6:
                 System.out.println("Enter new phoneNumber: ");
-                String phoneNumber = input.nextLine();
+                String phoneNumber = input.next();
                 (customer).setPhoneNumber(phoneNumber);
                 break;
             case 7:
                 System.out.println("Enter new email: ");
-                String email = input.nextLine();
+                String email = input.next();
                 (customer).setEmail(email);
                 break;
             case 8:
@@ -198,7 +212,7 @@ public class Admin {
         switch (choice) {
             case 1:
                 System.out.println("Enter new name: ");
-                String name = input.nextLine();
+                String name = input.next();
                 (equipment).setName(name);
                 break;
             case 2:
@@ -208,22 +222,43 @@ public class Admin {
                 break;
             case 3:
                 System.out.println("Enter new quantity: ");
-                int quantity = input.nextInt();
+                int quantity = Validate.checkInt();
                 (equipment).setQuantity(quantity);
                 break;
         }
     }
 
-    public static void delete(Coach coach, ArrayList<Coach> coaches) {
-        (coaches).remove(coach);
+    public static void deleteCoach(ArrayList<Coach> coaches) {
+        DisplayObject.displayCoaches(coaches);
+        System.out.print("Enter Coach's id: ");
+        int coachId = Validate.checkInt();
+        Coach coach = Searching.searchCoach(coaches, coachId);
+        if (coach != null)
+            coaches.remove(coach);
+        else
+            System.out.println("there is no Coach with this id");
     }
 
-    public static void delete(Customer customer, ArrayList<Customer> customers) {
-        (customers).remove(customer);
+    public static void deleteCustomer(ArrayList<Customer> customers) {
+        DisplayObject.displayCustomers(customers);
+        System.out.print("Enter Customer's id: ");
+        int customerId = Validate.checkInt();
+        Customer customer = Searching.searchCustomer(customers,customerId);
+        if (customer != null)
+            customers.remove(customer);
+        else
+            System.out.println("there isn't Customer with this id");
     }
 
-    public static void delete(Equipment equipment, ArrayList<Equipment> equipments) {
-        (equipments).remove(equipment);
+    public static void deleteEquipment(ArrayList<Equipment> equipments) {
+        DisplayObject.displayEquipments(equipments);
+        System.out.print("Enter Equipment's code: ");
+        String equipmentCode = input.next();
+        Equipment equipment = Searching.searchEquipment(equipments, equipmentCode);
+        if (equipment != null)
+            equipments.remove(equipment);
+        else
+            System.out.println("there isn't any equipment with this code");
     }
 
     public static void showSubscriptionHistoryForACustomer(ArrayList<Customer> customers) {
@@ -292,6 +327,7 @@ public class Admin {
         }
         return countOfCustomer;
     }
+
 
     public static ArrayList<CoachRecord> getDescendingCoaches(ArrayList<Subscription>subscriptions, ArrayList<Coach>coaches) {
         ArrayList<CoachRecord> coachesRecord = new ArrayList<>();
