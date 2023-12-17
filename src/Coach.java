@@ -65,13 +65,14 @@ public class Coach extends Person implements Serializable {
         if (customer.size() != 0)
             DisplayObject.displayCustomers(customer);
         else
-            System.out.println("there aren't " + gender + " Customers");
+            System.out.println("There aren't " + gender + " Customers");
     }
 
     @Override
     public String toString() {
-        return "Coach" + super.toString() +
-                "workingHoursPerDay=" + workingHoursPerDay +
-                '}';
+        String s = "Coach:\n" +
+                super.toString() +
+                "Working Hours Per Day: " + workingHoursPerDay + "\n";
+        return s;
     }
 }

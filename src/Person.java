@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 public abstract class Person implements Serializable {
     private int id;
-    private String password;
     private String name;
+    private String password;
     private char gender;
     private String address;
     private String phoneNumber;
@@ -21,6 +21,7 @@ public abstract class Person implements Serializable {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
+
     public int getId() {
         return id;
     }
@@ -79,13 +80,13 @@ public abstract class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "{" +
-                "id=" + id +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", address='" + address + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' + ", ";
+        String s = "Id: "          + this.id +
+                "\nName: "         + this.name +
+                "\nPassword: "     + this.password +
+                "\nGender: "       + this.gender +
+                "\nAddress: "      + this.address +
+                "\nPhone Number: " + this.phoneNumber +
+                "\nE-mail: "       + this.email + "\n";
+        return s;
     }
 }

@@ -92,15 +92,14 @@ public class InBody implements Serializable {
 
     @Override
     public String toString() {
-        return "InBody{" +
-                "customerId=" + customerId +
-                ", DATE_OF_INBODY=" + DATE_OF_INBODY +
-                ", height=" + height +
-                ", totalWeight=" + totalWeight +
-                ", bodyFatMass=" + bodyFatMass +
-                ", minerals=" + minerals +
-                ", totalBodyWater=" + totalBodyWater +
-                ", protein=" + protein +
-                '}';
+        return "In-Body:" +
+                "\nCustomer Id: "      + this.customerId +
+                "\nDate: "             + this.DATE_OF_INBODY +
+                "\nHeight: "           + this.height +
+                "\nTotal Weight: "     + this.totalWeight +
+                "\nBody Fat Mass: "    + this.bodyFatMass +
+                "\nMinerals: "         + this.minerals +
+                "\nTotal Body Water: " + this.totalBodyWater +
+                "\nProtein: "          + this.protein + "\n";
     }
 }

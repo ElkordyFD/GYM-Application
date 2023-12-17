@@ -78,10 +78,11 @@ public class Customer extends Person implements Serializable {
 
    @Override
    public String toString() {
-      return "Customer" + super.toString() +
-              "inBodies=" + inBodies +
-              ", subscription=" + subscription +
-              '}';
+      String s = "Customer:\n" +
+              super.toString() +
+              "In-Bodies: " + inBodies +
+              "Subscription: " + subscription + "\n";
+      return s;
    }
 
 

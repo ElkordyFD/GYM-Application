@@ -40,10 +40,10 @@ public class Subscription implements Serializable {
 
     @Override
     public String toString() {
-        return "Subscription{" +
-                "customerID=" + customerID +
-                ", assignedCoachID=" + assignedCoachID +
-                ", membershipPlan=" + membershipPlan +
-                '}';
+        String s = "Subscription: " +
+                "\ncustomerID: "      + this.customerID +
+                "\nassignedCoachID: " + this.assignedCoachID +
+                "\nmembershipPlan: "  + this.membershipPlan + "\n";
+        return s;
     }
 }
