@@ -7,7 +7,7 @@ public class Register {
     public static void registerCoach(ArrayList<Coach>coaches) {
         Admin.addCoach(coaches);
     }
-    public static void registerCustomer(ArrayList<Customer>customers) {
-        Admin.addCustomer(customers);
+    public static void registerCustomer(ArrayList<Customer>customers,ArrayList<Coach>coaches) {
+        Admin.addCustomer(customers,coaches);
     }
 }

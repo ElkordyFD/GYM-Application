@@ -81,7 +81,6 @@ public abstract class Person implements Serializable {
     public String toString() {
         return "{" +
                 "id=" + id +
-                ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
                 ", address='" + address + '\'' +

@@ -27,16 +27,7 @@ public class Validate {
     }
     public static int checkInt() {
         String x = "0";
-        do {
-            x = in.next();
-            if (x.equals("1") || x.equals("2") || x.equals("3") || x.equals("4") || x.equals("5") || x.equals("6") || x.equals("7") || x.equals("8") || x.equals("9")) {
-                checkValue = false;
-            } else {
-                System.out.println("Invalid Value");
-                System.out.print("Enter Value: ");
-                checkValue = true;
-            }
-        } while (checkValue);
+        x = in.next();
         return Integer.parseInt(x);
     }
     public static int checkInt(int start, int end) {

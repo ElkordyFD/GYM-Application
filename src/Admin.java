@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin {
+
     private final String username = "admin";
+
     private final String password = "admin";
     static private String pass;
     static private String name;
@@ -45,7 +47,6 @@ public class Admin {
         do {
             if(checkWorkingHours)
                 System.out.println("Invalid data");
-            System.out.print("Enter WorkingHours: ");
             workingHours = Validate.checkInt(1,8);
             if (workingHours>8) {
                 System.out.println("The Coach work not exceed 8 hours");
@@ -57,24 +58,14 @@ public class Admin {
         coaches.add(coach);
     }
 
-    public static void addCustomer(ArrayList<Customer> customers) {
+    public static void addCustomer(ArrayList<Customer> customers,ArrayList<Coach>coaches) {
         int idCustomer = generateCustomerID(customers);
-        int idCoach=0;  /*not yet*/
+        int idCoach;
         int registeredMonth;
         int price;
         int choice;
         ArrayList<InBody> inBodies = new ArrayList<>();
         boolean checkEmail = false;
-        System.out.print("Enter password: ");
-        pass = input.next();
-        System.out.print("Enter name: ");
-        name = input.next();
-        System.out.print("Enter gender: ");
-        gender = Validate.getGender();
-        System.out.print("Enter address: ");
-        address = input.next();
-        System.out.print("Enter phoneNumber: ");
-        phoneNumber = input.next();
         do {
             if (checkEmail)
                 System.out.println("Invalid email, the email must have '@' and '.com' ");
@@ -86,6 +77,21 @@ public class Admin {
                 checkEmail = true;
             }
         } while (checkEmail);
+        System.out.print("Enter password: ");
+        pass = input.next();
+        System.out.print("Enter name: ");
+        name = input.next();
+        System.out.print("Enter gender: ");
+        gender = Validate.getGender();
+        System.out.print("Enter address: ");
+        address = input.next();
+        System.out.print("Enter phoneNumber: ");
+        phoneNumber = input.next();
+        DisplayObject.displayCoaches(coaches);
+        do {
+            System.out.print("Enter coach id: ");
+            idCoach = Validate.checkInt();
+        } while(getCounterOfCustomerOfSpecificCoach(customers, idCoach) > 10);
         System.out.println("Enter membershipPLan Data");
         System.out.print("Enter registeredMonth: ");
         registeredMonth = Validate.checkInt();
@@ -117,8 +123,19 @@ public class Admin {
         equipments.add(equipment);
     }
 
-    public static void modify(Coach coach, int choice, ArrayList<Subscription> subscriptions, int coachId) {
-        switch (choice) {
+    public static void modify(ArrayList<Subscription> subscriptions,ArrayList<Coach>coaches) {
+        int choiceAttribute = 0;
+        int coachId;
+        DisplayObject.displayCoaches(coaches);
+        System.out.print("Enter Coach's id: ");
+        coachId = Validate.checkInt();
+        Coach coach = Searching.searchCoach(coaches, coachId);
+        if (coach != null) {
+            System.out.println("[1] id\n[2] password\n[3] name\n[4] gender\n[5] address\n[6] phoneNumber\n[7] email\n[8] workingHours");
+            choiceAttribute = Validate.checkInt(1,8);
+        } else
+            System.out.println("there is no Coach with this id");
+        switch (choiceAttribute) {
             case 1:
                 System.out.println("Enter new id: ");
                 int newId = Validate.checkInt();
@@ -166,8 +183,18 @@ public class Admin {
         }
     }
 
-    public static void modify(Customer customer, int choice) {
-        switch (choice) {
+    public static void modify(ArrayList<Customer> customers) {
+        int choiceAttribute = 0;
+        DisplayObject.displayCustomers(customers);
+        System.out.print("Enter Customer's id: ");
+        int customerId = Validate.checkInt();
+        Customer customer = Searching.searchCustomer(customers, customerId);
+        if (customer != null) {
+            System.out.println("[1] id\n[2] password\n[3] name\n[4] gender\n[5] address\n[6] phoneNumber\n[7] email");
+            choiceAttribute = Validate.checkInt(1, 7);
+        } else
+            System.out.println("there is no Customer with this id");
+        switch (choiceAttribute) {
             case 1:
                 System.out.println("Enter new id: ");
                 int newId = Validate.checkInt();
@@ -208,8 +235,18 @@ public class Admin {
         }
     }
 
-    public static void modify(Equipment equipment, int choice) {
-        switch (choice) {
+    public static void modifyEquipment(ArrayList<Equipment>equipments) {
+        int choiceAttribute = 0;
+        DisplayObject.displayEquipments(equipments);
+        System.out.print("Enter Equipment's code: ");
+        String equipmentCode = input.next();
+        Equipment equipment = Searching.searchEquipment(equipments , equipmentCode);
+        if (equipment != null) {
+            System.out.println("[1] name\n[2] code\n[3] quantity");
+            choiceAttribute = Validate.checkInt(1, 3);
+        } else
+            System.out.println("there is no any equipment with this code");
+        switch (choiceAttribute) {
             case 1:
                 System.out.println("Enter new name: ");
                 String name = input.next();
@@ -292,7 +329,7 @@ public class Admin {
     public static void showGymIncomeInSpecificMonth(ArrayList<Customer> customers) {
         Scanner input = new Scanner(System.in);
         int income = 0;
-        System.out.print("Enter date");
+        System.out.print("Enter date: ");
         String myDate = input.next();
         for (Customer customer : customers) {
             myDate = DateFormating.dateFormatMonth(customer.getSubscription().getMembershipPlan().getStartDate());
@@ -318,10 +355,10 @@ public class Admin {
         else
             System.out.println("There is no Coach with this id");
     }
-    public static int getCounterOfCustomerOfSpecificCoach(ArrayList<Subscription> subscriptions, int coachId) {
+    public static int getCounterOfCustomerOfSpecificCoach(ArrayList<Customer> customers, int coachId) {
         int countOfCustomer=0;
-        for (Subscription subscription : subscriptions) {
-            if (subscription.getAssignedCoachID() == coachId) {
+        for (Customer customer:customers) {
+            if (customer.getSubscription().getAssignedCoachID() == coachId) {
                 countOfCustomer++;
             }
         }
@@ -329,16 +366,16 @@ public class Admin {
     }
 
 
-    public static ArrayList<CoachRecord> getDescendingCoaches(ArrayList<Subscription>subscriptions, ArrayList<Coach>coaches) {
+    public static ArrayList<CoachRecord> getDescendingCoaches(ArrayList<Customer>customers, ArrayList<Coach>coaches) {
         ArrayList<CoachRecord> coachesRecord = new ArrayList<>();
         for (Coach coach:coaches) {
-            CoachRecord coachRecord = new CoachRecord(coach.getId(),getCounterOfCustomerOfSpecificCoach(subscriptions,coach.getId()));
+            CoachRecord coachRecord = new CoachRecord(coach.getId(),getCounterOfCustomerOfSpecificCoach(customers,coach.getId()));
             coachesRecord.add(coachRecord);
         }
         return coachesRecord;
     }
-    public static void showCoachesAssignedCustomer(ArrayList<Subscription>subscriptions,ArrayList<Coach>coaches) {
-        ArrayList<CoachRecord> coachRecords = Admin.getDescendingCoaches(subscriptions,coaches);
+    public static void showCoachesAssignedCustomer(ArrayList<Customer>customers,ArrayList<Coach>coaches) {
+        ArrayList<CoachRecord> coachRecords = Admin.getDescendingCoaches(customers,coaches);
         DisplayObject.displayDescendingCoaches(coachRecords,coaches);
     }
     public static int generateCoachID(ArrayList<Coach>coaches) {
